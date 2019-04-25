@@ -14,6 +14,13 @@ if(isset($_POST['signup-submit'])){
 	$tel = $_POST['tel'];
 	$birthday = $_POST['birthday'];
 	$gender = $_POST['gender'];
+
+	if ($gender == "male") {
+		$picture = "https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819__340.png";
+	}
+	else{
+		$picture = "https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807__340.png";
+	}
 	
 	//Checks if the username / first name / last name has any invalid characters
 	if (!preg_match("/^[a-zA-Z0-9]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $first_name) || !preg_match("/^[a-zA-Z]*$/", $last_name)) {
@@ -69,7 +76,7 @@ if(isset($_POST['signup-submit'])){
 					}
 					else{
 						//Inserts all the data into the database once the username and email are new and valid
-						$sql = "INSERT INTO users (username, email, first_name, last_name, pwd, gender, birthday, phone_number) VALUES (?,?,?,?,?,?,?,?)";
+						$sql = "INSERT INTO users (username, email, first_name, last_name, pwd, gender, birthday, phone_number, profile_picture) VALUES (?,?,?,?,?,?,?,?,?)";
 						$stmt = mysqli_stmt_init($conn);
 						if (!mysqli_stmt_prepare($stmt, $sql)) {
 							header("Location: ../signup.php?error=sqlerror");
@@ -78,7 +85,7 @@ if(isset($_POST['signup-submit'])){
 						else{
 							$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-							mysqli_stmt_bind_param($stmt, "ssssssss", $username, $email, $first_name, $last_name, $hashedPwd, $gender, $birthday, $tel);
+							mysqli_stmt_bind_param($stmt, "sssssssss", $username, $email, $first_name, $last_name, $hashedPwd, $gender, $birthday, $tel, $picture);
 							mysqli_stmt_execute($stmt);
 
 							header("Location: ../signup.php?signup=success");

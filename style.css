@@ -37,7 +37,7 @@ header{
 #imglogo{
 	width: 150px;
 	height: 50px;
-	background-image: url("images/logo3.png");
+	background-image: url("https://i.imgur.com/p6FgTIj.png");
 	background-repeat: no-repeat;
 	background-size: auto 60px;
 	margin-right: -30px;
@@ -187,7 +187,24 @@ button{
 	border: 5px solid #3d3d3d;
 }
 
+#pic-top-right{
+	width: 34px;
+	height: 34px;
+	padding: 2px;
+	margin: -1px 3px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto 33px;
+	opacity: 0.8;
+	border: 2px solid;
+	border-radius: 10%;
+	border-color: rgb(,,, 0.9);
+}
 
+#pic-top-right:hover{
+	opacity: 1;
+	border-color: black;
+}
 
 
 

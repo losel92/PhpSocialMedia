@@ -8,7 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
 	<header>
 			<a href="index.php">
 				<div id="imglogo"></div>
@@ -23,7 +22,7 @@
 
 			<div class="login-wrapper">
 
-				<?php if(!isset($_SESSION['userId'])){ //If there is no user logged in, it will show the login form and the signup button ?>
+				<?php if(!isset($_SESSION['userId'])){ //If there is no user logged in ?>
 
 					<form action="includes/login.inc.php" method="post" id="login-form">
 						<input type="text" name="usernamemail" placeholder="username/email">
@@ -33,7 +32,10 @@
 
 					<button onclick="location.href = 'signup.php';" id="signup-button" class="btn">SIGNUP</button>
 
-				<?php } else{ //if there is a user logged in it will display the logout button ?>
+				<?php } else{ //if there is a user logged in ?>
+
+					<!-- Little pic at the top right -->
+					<a href="#"><div id="pic-top-right" style="background-image: url(<?php echo $_SESSION['profilePic']; ?>);"></div></a>
 
 					<form action="includes/logout.inc.php" method="post">
 						<button type="submit" name="logout-submit" class="btn">LOGOUT</button>

@@ -47,6 +47,7 @@ if (isset($_POST['login-submit'])) {
 					$_SESSION['birthday'] = $row['birthday'];
 					$_SESSION['age'] = $row['age'];
 					$_SESSION['phoneNumber'] = $row['phone_number'];
+					$_SESSION['profilePic'] = $row['profile_picture'];
 
 					header('Location: ../index.php?login=success');
 					exit();
