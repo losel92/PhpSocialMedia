@@ -5,7 +5,7 @@ if (isset($_POST['login-submit'])) {
 	$conn = OpenCon();
 
 	$mailUn = $_POST['usernamemail'];
-	$pwd = $_POST['password'];
+	$pwd = $_POST['loginpwd'];
 
 	//If the user leaves one of the fields empty, it returns an error
 	if (empty($mailUn) || empty($pwd)) {

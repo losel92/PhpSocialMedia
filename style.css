@@ -157,6 +157,11 @@ button{
 	margin-left: 30px;
 }
 
+#signup-error-msg{
+	color: red;
+	margin: 0px;
+}
+
 
 /*  SIGNUP PAGE  */
 
@@ -190,11 +195,11 @@ button{
 #pic-top-right{
 	width: 34px;
 	height: 34px;
-	padding: 2px;
-	margin: -1px 3px;
+	padding: 0px;
+	margin: 0px 3px;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: auto 33px;
+	background-size: auto 34px;
 	opacity: 0.8;
 	border: 2px solid;
 	border-radius: 10%;
@@ -204,6 +209,18 @@ button{
 #pic-top-right:hover{
 	opacity: 1;
 	border-color: black;
+}
+
+#un-top-right{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin: 10px 3px;
+}
+
+#un-top-right:hover{
+	color: red;
+	cursor: pointer;
 }
 
 

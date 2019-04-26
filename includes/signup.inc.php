@@ -15,7 +15,7 @@ if(isset($_POST['signup-submit'])){
 	$birthday = $_POST['birthday'];
 	$gender = $_POST['gender'];
 
-	if ($gender == "male") {
+	if ($gender == "male") { //Gives the user an avatar based on their gender
 		$picture = "https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819__340.png";
 	}
 	else{

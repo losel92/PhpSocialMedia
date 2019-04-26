@@ -1,5 +1,7 @@
 <?php  
 	session_start(); //Starts the session if a user is logged in
+
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<?php include 'includes/signuperrors.inc.php'; ?>
 	<header>
 			<a href="index.php">
 				<div id="imglogo"></div>
@@ -25,8 +28,8 @@
 				<?php if(!isset($_SESSION['userId'])){ //If there is no user logged in ?>
 
 					<form action="includes/login.inc.php" method="post" id="login-form">
-						<input type="text" name="usernamemail" placeholder="username/email">
-						<input type="password" name="password" placeholder="password">
+						<input type="text" name="usernamemail" placeholder="<?php if($error == 'nouser'){echo $errorMsg;} else{echo 'username/email';} ?>">
+						<input type="password" name="loginpwd" placeholder="<?php if($error == 'wrongpwd'){echo $errorMsg;} else{echo 'Password';} ?>">
 						<button type="submit" name="login-submit" id="login-button" class="btn">LOGIN</button>
 					</form>
 
@@ -34,6 +37,8 @@
 
 				<?php } else{ //if there is a user logged in ?>
 
+					<!-- Username besides little pic at the top -->
+					<a href="#"><div id="un-top-right"><?php echo $_SESSION['username']; ?></div></a>
 					<!-- Little pic at the top right -->
 					<a href="#"><div id="pic-top-right" style="background-image: url(<?php echo $_SESSION['profilePic']; ?>);"></div></a>
 
