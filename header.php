@@ -28,7 +28,7 @@
 				<?php if(!isset($_SESSION['userId'])){ //If there is no user logged in ?>
 
 					<form action="includes/login.inc.php" method="post" id="login-form">
-						<input type="text" name="usernamemail" placeholder="<?php if($error == 'nouser'){echo $errorMsg;} else{echo 'username/email';} ?>">
+						<input type="text" name="usernamemail" placeholder="<?php if($error == 'nouser'){echo $errorMsg;} else{echo 'username/email';} ?>" value="<?php echo $username ?>">
 						<input type="password" name="loginpwd" placeholder="<?php if($error == 'wrongpwd'){echo $errorMsg;} else{echo 'Password';} ?>">
 						<button type="submit" name="login-submit" id="login-button" class="btn">LOGIN</button>
 					</form>

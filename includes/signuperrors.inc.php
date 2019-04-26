@@ -22,6 +22,7 @@ if (isset($_GET['error'])) {
 		echo '<style>input[name=usernamemail]{background-color: #ff9999;}</style>';
 	}
 	else if ($error == 'wrongpwd') {
+		$username = $_GET['un'];
 		$errorMsg = 'Wrong Password';
     	echo '<style>input[name=loginpwd]{background-color: #ff9999;}</style>';
 	}
