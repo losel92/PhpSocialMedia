@@ -8,6 +8,7 @@
 <head>
 	<title>Fictional Website</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 	<?php include 'includes/signuperrors.inc.php'; ?>
