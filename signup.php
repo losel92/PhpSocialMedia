@@ -49,5 +49,5 @@ include 'includes/signuperrors.inc.php';
 
 </main>
 
-
+<div style="height: 700px; width: 100%;"></div>
 <?php require 'footer.php'; ?>

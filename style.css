@@ -5,6 +5,9 @@ body{
 	font-family: "calibri";
 	cursor: auto;
 }
+.red-link:hover{
+	color: red;
+}
 
 #logged-div{
 	width: 240px;
@@ -255,9 +258,14 @@ button{
 	margin-top: 35px;
 }
 
-.profile-column-username{
-	font-size: 35px;
-	margin: 10px;
+.profile-column-photo:hover{
+	cursor: pointer;
+}
+
+.profile-column-big{
+	font-size: 40px;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 .row1{
@@ -274,14 +282,19 @@ button{
 
 .profile-column-name2{
 	text-align: left;
-	margin-left: 45px;
+	margin-left: 35px;
 	margin-bottom: -10px;
 }
 
 .profile-column-name-container{
 	display: flex;
-	margin-left: 20px;
+	margin-left: 10px;
 
+}
+
+.profile-column-email{
+	font-size: 25px;
+	margin: 30px;
 }
 
 
@@ -292,6 +305,44 @@ button{
 
 
 
+
+
+
+
+
+
+
+
+#pic-form-popup-wrapper{
+	text-align: center;
+	border: 2px solid black;
+	position: absolute;
+	background-color: #3d3d3d;
+	color: black;
+
+
+	left: 15vw;
+	top: 2.5vw;
+	border-radius: 1%;
+
+	display: none;
+}
+
+#select-pic-form{
+	width: 1000px;
+	height: 600px;
+}
+
+#select-pic-form span{
+	background-color: white;
+	padding: 5px 10px;
+	border-radius: 1%;
+}
+
+#select-pic-form h1{
+	font-size: 50px;
+	margin-bottom: 0px;
+}
 
 
 
