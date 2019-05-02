@@ -6,13 +6,14 @@
 		<input type="submit">
 </form>
 
-<button onclick="hideForm('pic-form-popup-wrapper')">Cancel</button>
+<button onclick="hideForm('id', 'pic-form-popup-wrapper')">Cancel</button>
 
 </div>
 
 <div id="profile-page-wrapper">
 	<div class="profile-column">
-		<img src="<?php echo $_SESSION['profilePic'] ?>" class="profile-column-photo" onclick="showForm('pic-form-popup-wrapper')">
+		<div class="profile-img-hov" onclick="showForm('id', 'pic-form-popup-wrapper')"><h1>Change Profile Picture</h1></div>
+		<img src="<?php echo $_SESSION['profilePic'] ?>" class="profile-column-photo">
 		<p class="profile-column-big"><?php echo $_SESSION['username']; ?></p>
 
 		<div class="profile-column-name-container">

@@ -252,13 +252,34 @@ button{
 
 .profile-column-photo{
 	width: 250px;
-	height: auto;
+	height: 250px;
 	background-repeat: no-repeat;
 	border: 5px solid black;
 	margin-top: 35px;
+	opacity: 1;
 }
 
-.profile-column-photo:hover{
+.profile-img-hov{
+	width: 250px;
+	height: 250px;
+	background-color: black;
+	color: white;
+	position: absolute;
+	margin-top: 35px;
+	margin-left: 25px;
+	border: 5px solid black;
+	opacity: 0;
+	transition: 0.5s ease;
+}
+
+.profile-img-hov h1{
+	margin-top: 60px;
+}
+
+.profile-img-hov:hover{
+	opacity: 1;
+	background-color: rgb(0,0,0, 0.65);
+	transition: 1s ease;
 	cursor: pointer;
 }
 
@@ -323,14 +344,14 @@ button{
 
 	left: 15vw;
 	top: 2.5vw;
+
+	width: 1000px;
+	height: 600px;
+
 	border-radius: 1%;
 
 	display: none;
-}
-
-#select-pic-form{
-	width: 1000px;
-	height: 600px;
+	z-index: 5;
 }
 
 #select-pic-form span{
