@@ -315,7 +315,8 @@ button{
 
 .profile-column-email{
 	font-size: 25px;
-	margin: 30px;
+	margin: 35px 20px;
+	text-align: left;
 }
 
 
