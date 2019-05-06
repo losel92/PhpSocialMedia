@@ -291,37 +291,50 @@ button{
 
 .row1{
 	width: 150px;
-	font-size: 25px;
 	margin: 0;
 }
 
 .profile-column-name1{
-	text-align: right;
-	margin-right: 35px;
-	margin-bottom: -10px;
+	text-align: left;
+	margin-left: 25px;
+	margin-bottom: -15px;
 }
 
 .profile-column-name2{
 	text-align: left;
-	margin-left: 35px;
-	margin-bottom: -10px;
+	margin-left: 15px;
+	margin-bottom: -15px;
 }
 
 .profile-column-name-container{
 	display: flex;
 	margin-left: 10px;
+	font-size: 25px;
 
+}
+
+.profile-column-agegender{
+	font-size: 40px;
+	margin: 10px 0px;
+	display: flex;
+}
+
+.profile-column-age{
+	text-align: left;
+	margin-left: 40px;
+}
+
+.profile-column-gender{
+	text-align: left;
+	margin-left: 35px;
+	color: red;
 }
 
 .profile-column-email{
 	font-size: 25px;
-	margin: 35px 20px;
+	margin: -10px 35px;
 	text-align: left;
 }
-
-
-
-
 
 
 

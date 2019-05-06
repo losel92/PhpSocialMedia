@@ -27,6 +27,15 @@
 			</div>
 		</div>
 
+		<div class="profile-column-agegender">
+			<div class="row1">
+				<p class="profile-column-age"><?php echo $_SESSION['age']; ?>yo</p>
+			</div>
+			<div class="row1">
+				<p class="profile-column-gender"><?php echo strtoupper($_SESSION['gender'][0]); ?></p>
+			</div>
+		</div>
+
 		<p class="profile-column-email">
 			<a href="mailto:person@email.com" class="red-link">
 				<?php echo $_SESSION['email']; ?>
