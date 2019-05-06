@@ -5,6 +5,8 @@ if(isset($_POST['signup-submit'])){
 	require 'dbconnect.inc.php';
 	$conn = OpenCon();
 
+	require 'functions.inc.php';
+
 	//Gets all the user input
 	$username = $_POST['username'];
 	$first_name = $_POST['firstname'];
@@ -14,6 +16,7 @@ if(isset($_POST['signup-submit'])){
 	$tel = $_POST['tel'];
 	$birthday = $_POST['birthday'];
 	$gender = $_POST['gender'];
+	$age = CalculateAge($birthday);
 
 	if ($gender == "male") { //Gives the user an avatar based on their gender
 		$picture = "https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819__340.png";
@@ -76,7 +79,7 @@ if(isset($_POST['signup-submit'])){
 					}
 					else{
 						//Inserts all the data into the database once the username and email are new and valid
-						$sql = "INSERT INTO users (username, email, first_name, last_name, pwd, gender, birthday, phone_number, profile_picture) VALUES (?,?,?,?,?,?,?,?,?)";
+						$sql = "INSERT INTO users (username, email, first_name, last_name, pwd, gender, birthday, age, phone_number, profile_picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
 						$stmt = mysqli_stmt_init($conn);
 						if (!mysqli_stmt_prepare($stmt, $sql)) {
 							header("Location: ../signup.php?error=sqlerror");
@@ -85,7 +88,7 @@ if(isset($_POST['signup-submit'])){
 						else{
 							$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-							mysqli_stmt_bind_param($stmt, "sssssssss", $username, $email, $first_name, $last_name, $hashedPwd, $gender, $birthday, $tel, $picture);
+							mysqli_stmt_bind_param($stmt, "sssssssiss", $username, $email, $first_name, $last_name, $hashedPwd, $gender, $birthday, $age, $tel, $picture);
 							mysqli_stmt_execute($stmt);
 
 							header("Location: ../signup.php?signup=success");

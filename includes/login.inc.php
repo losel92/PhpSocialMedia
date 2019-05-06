@@ -4,6 +4,8 @@ if (isset($_POST['login-submit'])) {
 	require 'dbconnect.inc.php';
 	$conn = OpenCon();
 
+	require 'functions.inc.php';
+
 	$mailUn = $_POST['usernamemail'];
 	$pwd = $_POST['loginpwd'];
 
@@ -45,9 +47,15 @@ if (isset($_POST['login-submit'])) {
 					$_SESSION['lastName'] = $row['last_name'];
 					$_SESSION['gender'] = $row['gender'];
 					$_SESSION['birthday'] = $row['birthday'];
-					$_SESSION['age'] = $row['age'];
 					$_SESSION['phoneNumber'] = $row['phone_number'];
 					$_SESSION['profilePic'] = $row['profile_picture'];
+
+					//Updates the user's age every time they log in
+					$age = CalculateAge($_SESSION['birthday']);
+					$sql = "UPDATE users SET age = $age WHERE user_id = $_SESSION[userId]";
+					mysqli_query($conn, $sql);
+
+					$_SESSION['age'] = $age;
 
 					header('Location: ../index.php?login=success');
 					exit();
