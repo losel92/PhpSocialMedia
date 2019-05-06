@@ -16,6 +16,15 @@
 		<img src="<?php echo $_SESSION['profilePic'] ?>" class="profile-column-photo">
 		<p class="profile-column-big"><?php echo $_SESSION['username']; ?></p>
 
+		<div class="profile-column-agegender">
+			<div class="row1">
+				<p class="profile-column-age"><?php echo $_SESSION['age']; ?>yo</p>
+			</div>
+			<div class="row1">
+				<p class="profile-column-gender"><?php echo strtoupper($_SESSION['gender'][0]); ?></p>
+			</div>
+		</div>
+		
 		<div class="profile-column-name-container">
 			<div class="row1">
 				<p class="profile-column-name1">First Name:</p>
@@ -24,15 +33,6 @@
 			<div class="row1">
 				<p class="profile-column-name2"><?php echo $_SESSION['firstName']; ?></p>
 				<p class="profile-column-name2"><?php echo $_SESSION['lastName']; ?></p>
-			</div>
-		</div>
-
-		<div class="profile-column-agegender">
-			<div class="row1">
-				<p class="profile-column-age"><?php echo $_SESSION['age']; ?>yo</p>
-			</div>
-			<div class="row1">
-				<p class="profile-column-gender"><?php echo strtoupper($_SESSION['gender'][0]); ?></p>
 			</div>
 		</div>
 

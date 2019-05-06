@@ -5,8 +5,12 @@ body{
 	font-family: "calibri";
 	cursor: auto;
 }
+
 .red-link:hover{
 	color: red;
+}
+input[type=submit], input[type=file]{
+	cursor: pointer;
 }
 
 #logged-div{
@@ -310,12 +314,13 @@ button{
 	display: flex;
 	margin-left: 10px;
 	font-size: 25px;
+	margin-top: 0px;
 
 }
 
 .profile-column-agegender{
 	font-size: 40px;
-	margin: 10px 0px;
+	margin: -20px 0px -40px 0px;
 	display: flex;
 }
 
@@ -332,7 +337,7 @@ button{
 
 .profile-column-email{
 	font-size: 25px;
-	margin: -10px 35px;
+	margin: 40px 35px;
 	text-align: left;
 }
 
