@@ -9,6 +9,7 @@
 	<title>Fictional Website</title>
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="AdditionalStuff/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
