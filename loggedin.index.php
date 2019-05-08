@@ -1,7 +1,7 @@
 <div class="form-wrapper" id="pic-form-popup-wrapper">
 	<div class="form-contents" id="pic-form-popup-contents">
 		<form class="form-popup" id="select-pic-form" method="post" action="upload.php" enctype="multipart/form-data">
-		    <span class="closeX">&times;</span>
+		    <span class="closeX" onclick="CloseModal('.form-contents')">&times;</span>
 		    <h1>Upload a new profile picture!</h1>
 		    <h3>OBS: The file must be either .png or .jpg and 600x600</h3>
 		    <input type="file" name="profile_pic">
@@ -11,11 +11,10 @@
 		<button onclick="hideForm('id', 'pic-form-popup-wrapper')">Cancel</button>
 	</div>
 </div>
-</div>
 
 <div id="profile-page-wrapper">
 	<div class="profile-column">
-		<div class="profile-img-hov" onclick="showForm('id', 'pic-form-popup-wrapper')"><h1>Change Profile Picture</h1></div>
+		<div class="profile-img-hov" onclick="OpenModal('.form-contents')"><h1>Change Profile Picture</h1></div>
 		<img src="<?php echo $_SESSION['profilePic'] ?>" class="profile-column-photo">
 		<p class="profile-column-big"><?php echo $_SESSION['username']; ?></p>
 

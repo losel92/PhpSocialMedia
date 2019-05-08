@@ -1,17 +1,14 @@
-function showForm(choice, form){
-	if (choice == "class") {
-		document.getElementByClass(form).style.display = "block";
-	}
-	else if(choice == "id"){
-		document.getElementById(form).style.display = "block";
-	}
-}
+//Starts the jQuery
+$(document).ready(function(){
 
-function hideForm(choice, form){
-	if (choice == "class") {
-		document.getElementByClass(form).style.display = "none";
-	}
-	else if(choice == "id"){
-		document.getElementById(form).style.display = "none";
-	}
+});
+
+//jQuery Functions
+function OpenModal(modalCont){
+	$(modalCont).parent().fadeIn(350);
+	$(modalCont).children().hide().delay(100).show(250);
+}
+function CloseModal(modalCont){
+	$(modalCont).parent().delay(200).fadeOut(100);
+	$(modalCont).children().hide(250);
 }

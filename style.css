@@ -372,22 +372,22 @@ button{
 	background-color: #ccc;
 	margin: auto;
 	padding-bottom: 20px;
-	padding-right: 20px;
     border: 2px solid #3d3d3d;
     width: 50%;
     border-radius: 1%;
 }
 
 .closeX{
-  color: #aaaaaa;
+  color: #000;
   float: right;
   font-size: 38px;
   font-weight: bold;
-  margin-top: -30px;
+  margin-top: -50px;
+  margin-right: -30px;
 }
 
 .closeX:hover{
-  color: #000;
+  color: #aaaaaa;
   text-decoration: none;
   cursor: pointer;
 }
