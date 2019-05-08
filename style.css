@@ -355,28 +355,41 @@ button{
 
 #pic-form-popup-wrapper{
 	text-align: center;
-	border: 2px solid black;
-	position: absolute;
-	background-color: #3d3d3d;
+	position: fixed;
+	background-color: rgb(0,0,0,0.4);
 	color: black;
-
-
-	left: 15vw;
-	top: 2.5vw;
-
-	width: 1000px;
-	height: 600px;
-
-	border-radius: 1%;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
 
 	display: none;
-	z-index: 5;
+	z-index: 1;
+	padding-top: 50px;
 }
 
-#select-pic-form span{
-	background-color: white;
-	padding: 5px 10px;
-	border-radius: 1%;
+#pic-form-popup-contents{
+	background-color: #ccc;
+	margin: auto;
+	padding-bottom: 20px;
+	padding-right: 20px;
+    border: 2px solid #3d3d3d;
+    width: 50%;
+    border-radius: 1%;
+}
+
+.closeX{
+  color: #aaaaaa;
+  float: right;
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: -30px;
+}
+
+.closeX:hover{
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #select-pic-form h1{

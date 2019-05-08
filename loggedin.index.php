@@ -1,13 +1,16 @@
 <div class="form-wrapper" id="pic-form-popup-wrapper">
-<form class="form-popup" id="select-pic-form" method="post" action="upload.php" enctype="multipart/form-data">
-		<h1><span>Upload a new profile picture!</span></h1>
-		<h3><span>OBS: The file must be either .png or .jpg and 600x600</span></h3>
-		<input type="file" name="profile_pic">
-		<input type="submit">
-</form>
+	<div class="form-contents" id="pic-form-popup-contents">
+		<form class="form-popup" id="select-pic-form" method="post" action="upload.php" enctype="multipart/form-data">
+		    <span class="closeX">&times;</span>
+		    <h1>Upload a new profile picture!</h1>
+		    <h3>OBS: The file must be either .png or .jpg and 600x600</h3>
+		    <input type="file" name="profile_pic">
+			<input type="submit">
+		</form>
 
-<button onclick="hideForm('id', 'pic-form-popup-wrapper')">Cancel</button>
-
+		<button onclick="hideForm('id', 'pic-form-popup-wrapper')">Cancel</button>
+	</div>
+</div>
 </div>
 
 <div id="profile-page-wrapper">
