@@ -1,14 +1,34 @@
+<?php
+if (! empty($_POST["upload"])) {
+    if (is_uploaded_file($_FILES['profile_pic']['tmp_name'])) {
+        $targetPath = "uploads/" . $_FILES['profile_pic']['name'];
+        if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $targetPath)) {
+            $uploadedImagePath = $targetPath;
+        }
+    }
+}
+?>
+
+
 <div class="form-wrapper" id="pic-form-popup-wrapper">
 	<div class="form-contents" id="pic-form-popup-contents">
-		<form class="form-popup" id="select-pic-form" method="post" action="upload.php" enctype="multipart/form-data">
+		<form class="form-popup" id="select-pic-form" method="post" action="" enctype="multipart/form-data">
 		    <span class="closeX" onclick="CloseModal('.form-contents')">&times;</span>
 		    <h1>Upload a new profile picture!</h1>
 		    <h3>OBS: The file must be either .png or .jpg and 600x600</h3>
-		    <input type="file" name="profile_pic">
-			<input type="submit">
+		    <input type="file" name="profile_pic" id="userImage" class="inputFile">
+			<input type="submit" name="upload" value="submit" class="btnSubmit">
 		</form>
 
-		<button onclick="hideForm('id', 'pic-form-popup-wrapper')">Cancel</button>
+		<div>
+		    <img src="<?php echo $imagePath; ?>" id="cropbox" class="img" /><br />
+		</div>
+		<div id="btn">
+		    <input type='button' id="crop" value='CROP'>
+		</div>
+		<div>
+		    <img src="#" id="cropped_img" style="display: none;">
+		</div>
 	</div>
 </div>
 
