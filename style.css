@@ -382,7 +382,7 @@ button{
   float: right;
   font-size: 38px;
   font-weight: bold;
-  margin-top: -50px;
+  margin-top: -49px;
   margin-right: -30px;
 }
 
@@ -396,6 +396,36 @@ button{
 	font-size: 50px;
 	margin-bottom: 0px;
 }
+
+#imgfile{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#profile-pic-upload-btn, #img-crop-btn{
+	padding: 10px 10px;
+	font-size: 17px;
+	font-weight: lighter;
+}
+
+.img-preview{
+	margin: 20px;
+}
+
+#img-crop-prev{
+	max-height: 400px;
+	max-width: 600px; 
+	border: 2px solid black;
+}
+
+
+
+
+
 
 
 
