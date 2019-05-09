@@ -365,7 +365,7 @@ button{
 
 	display: none;
 	z-index: 1;
-	padding-top: 40px;
+	padding-top: 20px;
 }
 
 #pic-form-popup-contents{
@@ -412,17 +412,24 @@ button{
 	font-weight: lighter;
 }
 
+#img-crop-btn{
+	visibility: hidden;
+}
+
 .img-preview{
 	margin: 20px;
 }
 
 #img-crop-prev{
-	max-height: 400px;
-	max-width: 600px; 
+	height: 600px !important;
+	width: 600px !important; 
 	border: 2px solid black;
 }
 
-
+.jcrop-holder img, .jcrop-tracker, .jcrop-holder{
+	width: 600px !important;
+	height: 600px !important;
+}
 
 
 

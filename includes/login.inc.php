@@ -49,6 +49,7 @@ if (isset($_POST['login-submit'])) {
 					$_SESSION['birthday'] = $row['birthday'];
 					$_SESSION['phoneNumber'] = $row['phone_number'];
 					$_SESSION['profilePic'] = $row['profile_picture'];
+					$_SESSION['croppedPic'] = $row['cropped_picture'];
 
 					//Updates the user's age every time they log in
 					$age = CalculateAge($_SESSION['birthday']);

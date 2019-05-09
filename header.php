@@ -9,8 +9,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Fictional Website</title>
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link rel="stylesheet" href="AdditionalStuff/jquery.Jcrop.min.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="AdditionalStuff/jquery-3.4.1.min.js"></script>
+	<script src="AdditionalStuff/jquery.Jcrop.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
@@ -44,7 +46,7 @@
 					<!-- Username besides little pic at the top -->
 					<a href="#"><div id="un-top-right"><?php echo $_SESSION['username']; ?></div></a>
 					<!-- Little pic at the top right -->
-					<a href="#"><div id="pic-top-right" style="background-image: url(<?php echo $_SESSION['profilePic']; ?>);"></div></a>
+					<a href="#"><div id="pic-top-right" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div></a>
 
 					<form action="includes/logout.inc.php" method="post">
 						<button type="submit" name="logout-submit" class="btn">LOGOUT</button>

@@ -79,7 +79,7 @@ if(isset($_POST['signup-submit'])){
 					}
 					else{
 						//Inserts all the data into the database once the username and email are new and valid
-						$sql = "INSERT INTO users (username, email, first_name, last_name, pwd, gender, birthday, age, phone_number, profile_picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
+						$sql = "INSERT INTO users (username, email, first_name, last_name, pwd, gender, birthday, age, phone_number, profile_picture, cropped_picture) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 						$stmt = mysqli_stmt_init($conn);
 						if (!mysqli_stmt_prepare($stmt, $sql)) {
 							header("Location: ../signup.php?error=sqlerror");
@@ -88,7 +88,7 @@ if(isset($_POST['signup-submit'])){
 						else{
 							$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-							mysqli_stmt_bind_param($stmt, "sssssssiss", $username, $email, $first_name, $last_name, $hashedPwd, $gender, $birthday, $age, $tel, $picture);
+							mysqli_stmt_bind_param($stmt, "sssssssisss", $username, $email, $first_name, $last_name, $hashedPwd, $gender, $birthday, $age, $tel, $picture, $picture);
 							mysqli_stmt_execute($stmt);
 
 							header("Location: ../signup.php?signup=success");

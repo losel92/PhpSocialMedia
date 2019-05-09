@@ -3,7 +3,7 @@
 		<form class="form-popup" id="select-pic-form" method="post" action="" enctype="multipart/form-data">
 		    <span class="closeX" onclick="CloseModal('.form-contents')">&times;</span>
 		    <h1>Upload a new profile picture!</h1>
-		    <h3>OBS: The file must be either .png or .jpg and 600x600</h3>
+		    <h3>OBS: The cropping feature works better if your image is 1:1</h3>
 		    <input type="file" name="imgfile" id="imgfile" />
 		    <label for="imgfile">Choose a file</label>
 			<input type="button" name="upload" value="UPLOAD" id="profile-pic-upload-btn" class="btn">
@@ -17,11 +17,10 @@
 		</div>
 	</div>
 </div>
-
 <div id="profile-page-wrapper">
 	<div class="profile-column">
 		<div class="profile-img-hov" onclick="OpenModal('.form-contents')"><h1>Change Profile Picture</h1></div>
-		<img src="<?php echo $_SESSION['profilePic'] ?>" class="profile-column-photo">
+		<img src="<?php echo $_SESSION['croppedPic'] ?>" class="profile-column-photo">
 		<p class="profile-column-big"><?php echo $_SESSION['username']; ?></p>
 
 		<div class="profile-column-agegender">
