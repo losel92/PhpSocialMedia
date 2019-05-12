@@ -255,8 +255,8 @@ button{
 
 
 .profile-column-photo{
-	width: 250px;
-	height: 250px;
+	width: 254px;
+	height: 252px;
 	background-repeat: no-repeat;
 	border: 5px solid black;
 	margin-top: 35px;
@@ -417,20 +417,22 @@ button{
 }
 
 .img-preview{
-	margin: 20px;
+	margin: 0px;
+	padding-top: 30px;
 }
 
 #img-crop-prev{
-	height: 600px !important;
-	width: 600px !important; 
 	border: 2px solid black;
+	max-width: 650px;
 }
 
 .jcrop-holder img, .jcrop-tracker, .jcrop-holder{
-	width: 600px !important;
-	height: 600px !important;
+	max-width: 600px !important;
+	max-height: 600px !important;
+	text-align: center !important;
 }
 
+.jcrop-holder img { max-width: none; max-height: none;}
 
 
 

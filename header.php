@@ -9,10 +9,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Fictional Website</title>
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-	<link rel="stylesheet" href="AdditionalStuff/jquery.Jcrop.min.css" type="text/css">
+	<link rel="stylesheet" href="https://unpkg.com/jcrop/dist/jcrop.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="AdditionalStuff/jquery-3.4.1.min.js"></script>
-	<script src="AdditionalStuff/jquery.Jcrop.min.js"></script>
+	<script src="https://unpkg.com/jcrop"></script>
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
