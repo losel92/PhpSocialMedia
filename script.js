@@ -40,15 +40,12 @@ $(document).ready(function(){
 		});
 	});
 
+    if ($('#img-crop-prev')){
+
+    }
+
     //Picture crop
-    var size;
-    $('#img-crop-prev').Jcrop({
-      aspectRatio: 1,
-      onSelect: function(c){
-       canvasSize = {x:c.x,y:c.y,w:c.w,h:c.h};
-       $("#img-crop-btn").css("visibility", "visible");     
-      }
-    });
+    Jcrop.attach('img-crop-prev');
  
     $("#img-crop-btn").click(function(){
         var imgPath = $("#img-crop-prev").attr('src');
