@@ -40,12 +40,16 @@ $(document).ready(function(){
 		});
 	});
 
-    if ($('#img-crop-prev')){
-
-    }
-
+   	$('#img-crop-prev').attr("width", "600");
+   	$('#img-crop-prev').attr("height", "400");
     //Picture crop
-    Jcrop.attach('img-crop-prev');
+    const jcrop = Jcrop.attach('img-crop-prev', {
+    	aspectRatio: 1
+    });
+
+    $(".jcrop-image-stage").click(function(){
+    	$("#img-crop-btn").slideDown(200);
+    });
  
     $("#img-crop-btn").click(function(){
         var imgPath = $("#img-crop-prev").attr('src');

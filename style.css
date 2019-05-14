@@ -413,19 +413,20 @@ button{
 }
 
 #img-crop-btn{
-	visibility: hidden;
+	display: none;
 }
 
 .img-preview{
 	margin: 0px;
-	padding-top: 30px;
-	text-align: center;
+	text-align: left;
+	margin-left: 0px;
+	padding: 30px 80px 10px 80px;
 }
 
 #img-crop-prev{
-	border: 2px solid black;
-	z-index: 1;
-	max-width: 600px;
+	z-index: 0;
+	outline: 2px dashed #000;
+    outline-offset: -2px;
 }
 
 
