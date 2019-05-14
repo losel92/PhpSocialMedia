@@ -15,18 +15,10 @@ function DownSizePic(pic, imgW, imgH, outW, outH){
 
 	var imgRatio = imgW / imgH;
 	var postH = imgH / (imgW / outW)
-
-	if (imgW > outW){
-		$(pic).attr("width", outW);
-		$(pic).attr("height", postH);
-		alert(imgH);
-	} 
-	else if(imgH > outH){
-		$(pic).attr("height", outH);
-		alert("height");
-	}
-
-	alert(imgRatio);
+	var postW = imgW / (imgH / outH)
+	
+	$(pic).attr("width", outW);
+	$(pic).attr("height", postH);
 }
 
 
@@ -49,10 +41,18 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success:function(response){
-                if(response != 0){
-                    $("#img-crop-prev").attr("src",response);
-                    $('.jcrop-holder').find('img').attr('src', response);
-                    $('.img-preview').show();
+                if(response != 0){ 
+                	//If the upload was successful, it will 
+                	//assign the src of the new img to the DOM element and properly downsize it
+                	//Also, makes a cool animation ;D
+                	$('.img-preview').slideUp(1000);
+                	setTimeout(function(){
+                	$("#img-crop-prev").delay(1500).attr("src",response);
+                    $('.jcrop-holder').delay(1500).find('img').attr('src', response);
+                    img.src = response;
+                    DownSizePic('#img-crop-prev', img.width, img.height, 600, 400);
+                    $('.img-preview').slideDown(1000);
+                	}, 1000);
                 }
                 else{
                     alert('File not uploaded');

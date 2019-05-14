@@ -371,9 +371,10 @@ button{
 #pic-form-popup-contents{
 	background-color: #ccc;
 	margin: auto;
-	padding-bottom: 20px;
+	padding-bottom: 50px;
+	margin-bottom: 40px;
     border: 2px solid #3d3d3d;
-    width: 50%;
+    width: 60%;
     border-radius: 1%;
 }
 
@@ -420,7 +421,7 @@ button{
 	margin: 0px;
 	text-align: left;
 	margin-left: 0px;
-	padding: 30px 80px 10px 80px;
+	padding: 30px 100px 10px 100px;
 }
 
 #img-crop-prev{
