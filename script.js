@@ -1,11 +1,32 @@
 //jQuery Functions
 function OpenModal(modalCont){
+
 	$(modalCont).parent().fadeIn(350);
 	$(modalCont).children().hide().delay(100).show(250);
-}
+} 
+
 function CloseModal(modalCont){
+
 	$(modalCont).parent().delay(200).fadeOut(100);
 	$(modalCont).children().hide(250);
+}
+
+function DownSizePic(pic, imgW, imgH, outW, outH){
+
+	var imgRatio = imgW / imgH;
+	var postH = imgH / (imgW / outW)
+
+	if (imgW > outW){
+		$(pic).attr("width", outW);
+		$(pic).attr("height", postH);
+		alert(imgH);
+	} 
+	else if(imgH > outH){
+		$(pic).attr("height", outH);
+		alert("height");
+	}
+
+	alert(imgRatio);
 }
 
 
@@ -40,8 +61,15 @@ $(document).ready(function(){
 		});
 	});
 
-   	$('#img-crop-prev').attr("width", "600");
-   	$('#img-crop-prev').attr("height", "400");
+    //downsizes the img if it is too large
+	var imgPath = $("#img-crop-prev").attr('src');
+	var img = new Image();
+    img.src = imgPath;
+
+    DownSizePic('#img-crop-prev', img.width, img.height, 600, 400);
+
+   
+
     //Picture crop
     const jcrop = Jcrop.attach('img-crop-prev', {
     	aspectRatio: 1
@@ -52,14 +80,13 @@ $(document).ready(function(){
     });
  
     $("#img-crop-btn").click(function(){
-        var imgPath = $("#img-crop-prev").attr('src');
         var imgWidth = 0;
         var imgHeight = 0;
 
         //Creates a new img object and assigns its source to the uploaded img's
-        var img = new Image();
-        img.src = imgPath;
-		img.onload = function() {
+        var prevImg = new Image();
+        prevImg.src = imgPath;
+		prevImg.onload = function() {
 			imgWidth = this.width;
 			imgHeight = this.height;
 
