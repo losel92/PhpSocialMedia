@@ -424,7 +424,7 @@ button{
 	padding: 30px 100px 10px 100px;
 }
 
-#img-crop-prev{
+#img-crop-prev, .jcrop-holder img{
 	z-index: 0;
 	outline: 2px dashed #000;
     outline-offset: -2px;

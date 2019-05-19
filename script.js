@@ -16,25 +16,20 @@ function DownSizePic(pic, imgW, imgH, outW, outH){
 	var imgRatio = imgW / imgH;
 	var postH = imgH / (imgW / outW);
 	var postW = imgW / (imgH / outH);
-    
-    alert($(pic).attr("width") + ":" + $(pic).attr("height") + " | " + imgW + ":" + imgH);
 
 	$(pic).attr("width", outW);
     $(pic).attr("height", postH);
-    
-    alert($(pic).attr("width") + ":" + $(pic).attr("height"));
+
 }
 
 var jcrop_api;
-    var img;
-    var imgPath;
-
+var img;
+var imgPath;
 function ApplyCrop(image, width){
     //downsizes the img to fit inside the container
     imgPath = $(image).attr('src');
     img = new Image();
     img.src = imgPath;
-    alert(img.src);
     DownSizePic(image, img.width, img.height, width, 400);
     
     //Assigns the picture to the Jcrop element
@@ -69,13 +64,12 @@ $(document).ready(function(){
                     jcrop_api.destroy();
                 	$('.img-preview').slideUp(1000);
                     
-
-                    $("#img-crop-prev").remove();
-                    $(".img-preview").append("<img src='" + response + "' id='img-crop-prev'>");
-                    ApplyCrop("#img-crop-prev", 600);
-                
-
-                    $('.img-preview').slideDown(1000);
+                    setTimeout(function(){
+                        $("#img-crop-prev").remove();
+                        $(".img-preview").append("<img src='" + response + "' id='img-crop-prev'>");
+                        ApplyCrop("#img-crop-prev", 600);
+                        $('.img-preview').css('display', 'block');
+                    }, 1500);
                 }
                 else{
                     alert('File not uploaded');
