@@ -14,13 +14,34 @@ function CloseModal(modalCont){
 function DownSizePic(pic, imgW, imgH, outW, outH){
 
 	var imgRatio = imgW / imgH;
-	var postH = imgH / (imgW / outW)
-	var postW = imgW / (imgH / outH)
-	
+	var postH = imgH / (imgW / outW);
+	var postW = imgW / (imgH / outH);
+    
+    alert($(pic).attr("width") + ":" + $(pic).attr("height") + " | " + imgW + ":" + imgH);
+
 	$(pic).attr("width", outW);
-	$(pic).attr("height", postH);
+    $(pic).attr("height", postH);
+    
+    alert($(pic).attr("width") + ":" + $(pic).attr("height"));
 }
 
+var jcrop_api;
+    var img;
+    var imgPath;
+
+function ApplyCrop(image, width){
+    //downsizes the img to fit inside the container
+    imgPath = $(image).attr('src');
+    img = new Image();
+    img.src = imgPath;
+    alert(img.src);
+    DownSizePic(image, img.width, img.height, width, 400);
+    
+    //Assigns the picture to the Jcrop element
+    $(image).Jcrop({
+        aspectRatio: 1
+    }, function(){jcrop_api = this});
+}
 
 //Starts the jQuery
 $(document).ready(function(){
@@ -44,15 +65,17 @@ $(document).ready(function(){
                 if(response != 0){ 
                 	//If the upload was successful, it will 
                 	//assign the src of the new img to the DOM element and properly downsize it
-                	//Also, makes a cool animation ;D
+                    //Also, makes a cool animation ;D
+                    jcrop_api.destroy();
                 	$('.img-preview').slideUp(1000);
-                	setTimeout(function(){
-                	$("#img-crop-prev").delay(1500).attr("src",response);
-                    $('.jcrop-holder').delay(1500).find('img').attr('src', response);
-                    img.src = response;
-                    DownSizePic('#img-crop-prev', img.width, img.height, 600, 400);
+                    
+
+                    $("#img-crop-prev").remove();
+                    $(".img-preview").append("<img src='" + response + "' id='img-crop-prev'>");
+                    ApplyCrop("#img-crop-prev", 600);
+                
+
                     $('.img-preview').slideDown(1000);
-                	}, 1000);
                 }
                 else{
                     alert('File not uploaded');
@@ -60,22 +83,14 @@ $(document).ready(function(){
             }
 		});
 	});
+    
+    //Makes the img "croppable"
+    ApplyCrop("#img-crop-prev", 600);
 
-    //downsizes the img if it is too large
-	var imgPath = $("#img-crop-prev").attr('src');
-	var img = new Image();
-    img.src = imgPath;
+    var imgToCrop = $('.jcrop-holder').find('img');
 
-    DownSizePic('#img-crop-prev', img.width, img.height, 600, 400);
-
-   
-
-    //Picture crop
-    const jcrop = Jcrop.attach('img-crop-prev', {
-    	aspectRatio: 1
-    });
-
-    $(".jcrop-image-stage").click(function(){
+    //when the user starts cropping, the 'CROP' button will appear
+    $('.jcrop-holder').click(function(){
     	$("#img-crop-btn").slideDown(200);
     });
  
