@@ -25,6 +25,7 @@ function DownSizePic(pic, imgW, imgH, outW, outH){
 var jcrop_api;
 var img;
 var imgPath;
+var canvasSize;
 function ApplyCrop(image, width){
     //downsizes the img to fit inside the container
     imgPath = $(image).attr('src');
@@ -34,9 +35,20 @@ function ApplyCrop(image, width){
     
     //Assigns the picture to the Jcrop element
     $(image).Jcrop({
-        aspectRatio: 1
+        aspectRatio: 1,
+        minSize: [100, 100],
+        setSelect: [0, 0, 1000, 1000],
+        onSelect: updateCoords
     }, function(){jcrop_api = this});
 }
+
+function updateCoords(c)
+			{
+				$('#x').val(c.x);
+				$('#y').val(c.y);
+				$('#w').val(c.w);
+				$('#h').val(c.h);
+			};
 
 //Starts the jQuery
 $(document).ready(function(){
@@ -62,6 +74,7 @@ $(document).ready(function(){
                 	//assign the src of the new img to the DOM element and properly downsize it
                     //Also, makes a cool animation ;D
                     jcrop_api.destroy();
+                    $('#img-crop-btn').fadeOut();
                 	$('.img-preview').slideUp(1000);
                     
                     setTimeout(function(){
@@ -84,7 +97,7 @@ $(document).ready(function(){
     var imgToCrop = $('.jcrop-holder').find('img');
 
     //when the user starts cropping, the 'CROP' button will appear
-    $('.jcrop-holder').click(function(){
+    $('.img-preview').click(function(){
     	$("#img-crop-btn").slideDown(200);
     });
  
@@ -113,12 +126,13 @@ $(document).ready(function(){
 
 	        var croppedImgPath = 'image-crop.php?x='+size.x+'&y='+size.y+'&w='+size.w+'&h='+size.h+'&img='+imgPath;
 
-	        //
+	        //Calls the php file to upload the img
 	        $.ajax({
                 type: "POST",
                 url: "imgUpload.php" ,
                 data: { croppedPath: croppedImgPath },
                 success : function() { 
+                    alert(croppedImgPath);
                 	location.reload();
                 }
             });
