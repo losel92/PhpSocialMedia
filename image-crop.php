@@ -1,5 +1,5 @@
 <?php
-/*
+
   $img_r = imagecreatefromjpeg($_GET['img']);
   $dst_r = ImageCreateTrueColor( $_GET['w'], $_GET['h'] );
 
@@ -9,8 +9,7 @@
   imagejpeg($dst_r);
  
   exit;
-*/
-
+/*
 $targ_w = $targ_h = 600;
 $jpeg_quality = 90;
 
@@ -23,6 +22,6 @@ imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
 
 header('Content-type: image/jpeg');
 imagejpeg($dst_r, null, $jpeg_quality);
-
+*/
 
 ?>

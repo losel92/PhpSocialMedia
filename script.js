@@ -44,10 +44,11 @@ function ApplyCrop(image, width){
 
 function updateCoords(c)
 			{
-				$('#x').val(c.x);
+				$('#x').val(c.x); 
 				$('#y').val(c.y);
 				$('#w').val(c.w);
-				$('#h').val(c.h);
+                $('#h').val(c.h);
+                canvasSize = {x:c.x,y:c.y,w:c.w,h:c.h};
 			};
 
 //Starts the jQuery
