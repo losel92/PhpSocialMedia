@@ -13,12 +13,12 @@
 		    <img src="<?php echo $_SESSION['profilePic']; ?>" id="img-crop-prev">
 		</div>
 		<div> 
-			<!-- <form action="image-crop.php" method="post">
+			<form action="image-crop.php" method="post">
 				<input type="hidden" id="x" name="x" />
 				<input type="hidden" id="y" name="y" />
 				<input type="hidden" id="w" name="w" />
 				<input type="hidden" id="h" name="h" />
-			</form> -->
+			</form>
 			<button id="img-crop-btn" class="btn">CROP</button>
 		</div>
 	</div>

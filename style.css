@@ -374,7 +374,7 @@ button{
 	padding-bottom: 50px;
 	margin-bottom: 40px;
     border: 2px solid #3d3d3d;
-    width: 60%;
+    width: 800px;
     border-radius: 1%;
 }
 
@@ -419,9 +419,13 @@ button{
 
 .img-preview{
 	margin: 0px;
-	text-align: left;
+	text-align: center;
 	margin-left: 0px;
-	padding: 30px 100px 10px 100px;
+}
+
+.jcrop-centered{
+	display: inline-block;
+	margin: 20px;
 }
 
 #img-crop-prev, .jcrop-holder img{
