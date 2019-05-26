@@ -121,7 +121,7 @@ button{
 	font-size: 25px;
 	padding: 10px;
 	border-radius: 3%;
-	border: 0px;
+	border: 1px solid black;
 }
 
 #signup-birthday{
@@ -130,6 +130,15 @@ button{
 	font-size: 17px;
 }
 
+
+#signup-button{
+	text-align: center;
+	margin: 0px -3px;
+	padding: 12px 12px;
+	border: 0px solid;
+	background: #3d3d3d;
+	border-radius: 5%;
+}
 
 #signup-btn{
 	font-size: 35px;
@@ -143,30 +152,27 @@ button{
 	border-radius: 3%;
 }
 
-.popup-form{
+#signup-content{
 	text-align: center;
 	position: fixed;
 	background-color: rgb(0,0,0,0.4);
 	color: black;
-	top: 0px;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-
-	
+	display: none;
 	z-index: 1;
 	padding-top: 20px;
 }
 
 #signup-wrapper {
-	display: block;
-	text-align: center;
-	position: absolute;
-	right: 25%;
-	top: 10%;
 	background: #8e8e8e;
+	border: 1px solid black;
 	width: 650px;
 	border-radius: 2%;
+	margin: 3% auto;
 }
 
 #signup-gender{
@@ -180,9 +186,11 @@ button{
 	margin-left: 30px;
 }
 
-#signup-error-msg{
+.form-error{
 	color: red;
-	margin: 0px;
+}
+.form-success{
+	color: green;
 }
 
 

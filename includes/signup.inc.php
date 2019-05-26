@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['signup-submit'])){
+if(isset($_POST['username'])){
 
 	//Opens a connection to the database
 	require 'dbconnect.inc.php';
@@ -27,18 +27,18 @@ if(isset($_POST['signup-submit'])){
 	
 	//Checks if the username / first name / last name has any invalid characters
 	if (!preg_match("/^[a-zA-Z0-9]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $first_name) || !preg_match("/^[a-zA-Z]*$/", $last_name)) {
-		header('Location: ../signup.php?error=invalidcharacters&un='.$username.'&fn='.$first_name.'&ln='.$last_name.'&mail='.$email.'&tel='.$tel.'&bd='.$birthday.'&gender='.$gender);
-		exit();
+		$msg = '<span class="form-error">Invalid Characters</span>';
+		$errorCode = 'invalidcharacters';
 	}
 	//Same thing but for the phone number
 	else if (!preg_match("/^[0-9\-\+\s\)\(]*$/", $tel) || strlen($tel) < 7 || strlen($tel) > 25) {
-		header('Location: ../signup.php?error=invalidtel&un='.$username.'&fn='.$first_name.'&ln='.$last_name.'&mail='.$email.'&tel='.$tel.'&bd='.$birthday.'&gender='.$gender);
-		exit();
+		$msg = '<span class="form-error">Invalid Phone Number</span>';
+		$errorCode = 'invalidtel';
 	}
 	//Checks for a password that is shorter than 8 characters
 	else if (strlen($pwd) < 8) {
-		header('Location: ../signup.php?error=shortpwd&un='.$username.'&fn='.$first_name.'&ln='.$last_name.'&mail='.$email.'&tel='.$tel.'&bd='.$birthday.'&gender='.$gender);
-		exit();
+		$msg = '<span class="form-error">Password must be at least 8 characters long</span>';
+		$errorCode = 'shortpwd';
 	}
 	else{
 
@@ -47,8 +47,8 @@ if(isset($_POST['signup-submit'])){
 		$stmt = mysqli_stmt_init($conn);
 
 		if (!mysqli_stmt_prepare($stmt, $sql)) {
-			header("Location: ../signup.php?error=sqlerror");
-			exit();
+			$msg = '<span class="form-error">SQL Error</span>';
+			$errorCode = 'sqlerror';
 		}
 		else{
 			mysqli_stmt_bind_param($stmt, "s", $username);
@@ -56,8 +56,8 @@ if(isset($_POST['signup-submit'])){
 			mysqli_stmt_store_result($stmt);
 			$rowCount = mysqli_stmt_num_rows($stmt);
 			if ($rowCount > 0) {
-				header('Location: ../signup.php?error=existingun&un='.$username.'&fn='.$first_name.'&ln='.$last_name.'&mail='.$email.'&tel='.$tel.'&bd='.$birthday.'&gender='.$gender);
-				exit();
+				$msg = '<span class="form-error">Username taken</span>';
+				$errorCode = 'existingun';
 			}
 			else{
 				//Same thing but for the email
@@ -65,8 +65,8 @@ if(isset($_POST['signup-submit'])){
 				$stmt = mysqli_stmt_init($conn);
 
 				if (!mysqli_stmt_prepare($stmt, $sql)) {
-					header("Location: ../signup.php?error=sqlerror");
-					exit();
+					$msg = '<span class="form-error">SQL Error</span>';
+					$errorCode = 'sqlerror';
 				}
 				else{
 					mysqli_stmt_bind_param($stmt, "s", $email);
@@ -74,16 +74,16 @@ if(isset($_POST['signup-submit'])){
 					mysqli_stmt_store_result($stmt);
 					$rowCount = mysqli_stmt_num_rows($stmt);
 					if ($rowCount > 0) {
-						header('Location: ../signup.php?error=existingmail&un='.$username.'&fn='.$first_name.'&ln='.$last_name.'&mail='.$email.'&tel='.$tel.'&bd='.$birthday.'&gender='.$gender);
-						exit();
+						$msg = '<span class="form-error">Email taken</span>';
+						$errorCode = 'existingmail';
 					}
 					else{
 						//Inserts all the data into the database once the username and email are new and valid
 						$sql = "INSERT INTO users (username, email, first_name, last_name, pwd, gender, birthday, age, phone_number, profile_picture, cropped_picture) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 						$stmt = mysqli_stmt_init($conn);
 						if (!mysqli_stmt_prepare($stmt, $sql)) {
-							header("Location: ../signup.php?error=sqlerror");
-							exit();
+							$msg = '<span class="form-error">SQL Error</span>';
+							$errorCode = 'sqlerror';
 						}
 						else{
 							$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
@@ -91,21 +91,59 @@ if(isset($_POST['signup-submit'])){
 							mysqli_stmt_bind_param($stmt, "sssssssisss", $username, $email, $first_name, $last_name, $hashedPwd, $gender, $birthday, $age, $tel, $picture, $picture);
 							mysqli_stmt_execute($stmt);
 
-							header("Location: ../signup.php?signup=success");
-							exit();
+							$msg = '<span class="form-success">Signup successful</span>';
+							$errorCode = 'noerror';
 						}
 					}
 				}
 			}
 		}
 	}
-	//Closes the connection to the database
-	mysqli_stmt_close($stmt);
-	mysqli_close($conn);
 }
 
 //If the user simply inserts the url without completing the signup form they'll get redirected to index.php
 else{
-	header('Location: ../index.php');
-	exit();
+	$msg = 'You fucked up somewhere Losel';
 }
+
+?>
+
+<script>
+
+	//Gets the error code from the above php script
+	var errorCode = "<?php echo $errorCode ?>";
+
+	//Gets the msg
+	var msg = '<?php echo $msg ?>';
+
+	//Changes the error/success message
+	$('#signup-error-msg').html(msg);
+
+	//Resets the border-color of the inputs
+	$('#signup-fname, #signup-lname, #signup-uname, #signup-pwd, #signup-email, #signup-tel').css('border-color', 'black');
+
+	//Changes the border-color of the inputs that contain an error
+	switch (errorCode) {
+		case 'invalidcharacters':
+			$('#signup-fname, #signup-lname, #signup-uname').css('border-color', 'red');
+			break;
+		
+		case 'invalidtel':
+			$('#signup-tel').css('border-color', 'red');
+			break;
+
+		case 'shortpwd':
+			$('#signup-pwd').css('border-color', 'red');
+			break;
+
+		case 'existingun':
+			$('#signup-uname').css('border-color', 'red');
+			break;
+
+		case 'existingmail':
+			$('#signup-email').css('border-color', 'red');
+			break;
+    }
+
+
+</script>

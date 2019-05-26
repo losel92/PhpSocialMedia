@@ -39,7 +39,9 @@
 						<button type="submit" name="login-submit" id="login-button" class="btn">LOGIN</button>
 					</form>
 
-					<button onclick="location.href = 'signup.php';" id="signup-button" class="btn">SIGNUP</button>
+					<?php require 'signup.php'; ?>
+
+					<button onclick="OpenModal('#signup-wrapper');" id="signup-button" class="btn">SIGNUP</button>
 
 				<?php } else{ //if there is a user logged in ?>
 
