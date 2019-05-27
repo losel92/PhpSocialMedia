@@ -54,7 +54,6 @@ if (isset($_POST['login-submit'])) {
 					//Updates the user's age every time they log in
 					$age = CalculateAge($_SESSION['birthday']);
 					$sql = "UPDATE users SET age = $age WHERE user_id = $_SESSION[userId]";
-					mysqli_query($conn, $sql);
 
 					$_SESSION['age'] = $age;
 

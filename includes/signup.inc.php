@@ -93,6 +93,26 @@ if(isset($_POST['username'])){
 
 							$msg = '<span class="form-success">Signup successful</span>';
 							$errorCode = 'noerror';
+
+							//Logs the user in
+							$sql = "SELECT * FROM users WHERE username = '$username'";
+							$result = mysqli_query($conn, $sql);
+							$row = mysqli_fetch_assoc($result);
+
+							//saves all the user information to the session
+							session_start();
+							$_SESSION['userId'] = $row['user_id'];
+							$_SESSION['username'] = $row['username'];
+							$_SESSION['email'] = $row['email'];
+							$_SESSION['firstName'] = $row['first_name'];
+							$_SESSION['lastName'] = $row['last_name'];
+							$_SESSION['gender'] = $row['gender'];
+							$_SESSION['birthday'] = $row['birthday'];
+							$_SESSION['phoneNumber'] = $row['phone_number'];
+							$_SESSION['profilePic'] = $row['profile_picture'];
+							$_SESSION['croppedPic'] = $row['cropped_picture'];
+							$_SESSION['age'] = $age;
+
 						}
 					}
 				}
@@ -116,34 +136,44 @@ else{
 	//Gets the msg
 	var msg = '<?php echo $msg ?>';
 
-	//Changes the error/success message
-	$('#signup-error-msg').html(msg);
+	//If the signup was successful, it will reload the page so the user gets logged in immediately
+	if(errorCode == 'noerror') { 
+		location.reload(); 
+	}
+	//If there was an error
+	else{
+		//Changes the error/success message
+		$('#signup-error-msg').html(msg);
 
-	//Resets the border-color of the inputs
-	$('#signup-fname, #signup-lname, #signup-uname, #signup-pwd, #signup-email, #signup-tel').css('border-color', 'black');
+		//Resets the border-color of the inputs
+		$('#signup-fname, #signup-lname, #signup-uname, #signup-pwd, #signup-email, #signup-tel').css('border-color', 'black');
 
-	//Changes the border-color of the inputs that contain an error
-	switch (errorCode) {
-		case 'invalidcharacters':
-			$('#signup-fname, #signup-lname, #signup-uname').css('border-color', 'red');
-			break;
-		
-		case 'invalidtel':
-			$('#signup-tel').css('border-color', 'red');
-			break;
+		//Resets the password input field
+		$('#signup-pwd').val('');
 
-		case 'shortpwd':
-			$('#signup-pwd').css('border-color', 'red');
-			break;
+		//Changes the border-color of the inputs that contain an error
+		switch (errorCode) {
+			case 'invalidcharacters':
+				$('#signup-fname, #signup-lname, #signup-uname').css('border-color', 'red');
+				break;
+			
+			case 'invalidtel':
+				$('#signup-tel').css('border-color', 'red');
+				break;
 
-		case 'existingun':
-			$('#signup-uname').css('border-color', 'red');
-			break;
+			case 'shortpwd':
+				$('#signup-pwd').css('border-color', 'red');
+				break;
 
-		case 'existingmail':
-			$('#signup-email').css('border-color', 'red');
-			break;
-    }
+			case 'existingun':
+				$('#signup-uname').css('border-color', 'red');
+				break;
+
+			case 'existingmail':
+				$('#signup-email').css('border-color', 'red');
+				break;
+		}
+	}
 
 
 </script>
