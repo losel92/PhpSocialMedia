@@ -50,13 +50,14 @@
 		</div>
 
 		<p class="profile-column-email">
-			<a href="mailto:person@email.com" class="red-link">
+			<a href="mailto:<?php echo $_SESSION['email'] ?>" class="red-link">
 				<?php echo $_SESSION['email']; ?>
 			</a>
 		</p>
 	</div>
 
 	<div class="profile-posts-div">
+		<?php require 'userPosts.php'; ?>
 	</div>
 
 </div>

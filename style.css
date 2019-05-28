@@ -21,11 +21,6 @@ input[type=submit], input[type=file]{
 	margin-left: -120px;
 }
 
-h2{
-	background: white;
-	margin: 5px;
-}
-
 .btn{
 	color: white;
 	background: #3d3d3d;
@@ -254,8 +249,9 @@ button{
 	cursor: pointer;
 }
 
-/* PROFILE PAGE */
+/* PROFILE PAGE --> */
 
+/* INFORMATION COLUMN --> */
 #profile-page-wrapper{
 	display: flex;
 	margin-top: -4px;
@@ -365,16 +361,11 @@ button{
 	text-align: left;
 }
 
+/* <-- INFORMATION COLUMN */
 
 
 
-
-
-
-
-
-
-
+/* POPUP FORM --> */
 
 #pic-form-popup-wrapper{
 	text-align: center;
@@ -457,12 +448,136 @@ button{
     outline-offset: -2px;
 }
 
+/* <-- POPUP FORM */
+
+
+/* SINGLE POST --> */
+
+
+/* The wrapper for the posts */
+.userPost{ 
+	padding: 20px;
+}
+
+/* The container for the text to be displayed with the post */
+.post-contents{
+	background-color: #ccc;
+	
+	border: 2px solid #3d3d3d;
+	padding: 0px 15px;
+	border-radius: 10px;
+}
+
+/* The post headline */
+.post-headline{
+
+}
+
+/* The non-headline text in the post */
+.post-text{
+
+}
+
+/* The contents on the top left of the post */
+.post-top{
+	display: flex;
+	align-items: center;
+}
+
+/* The picture on the top left of the post */
+.post-picture{
+	margin: 5px 3px;
+	width: 40px;
+	height: 40px;
+
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+.post-picture:hover{
+	border-color: #000;
+	filter: contrast(1.2);
+}
+
+/* The username right besides the picture */
+.post-un{
+	font-family: "calibri";
+	font-weight: bold;
+	font-size: 20px;
+
+	padding: 8px 5px;
+	margin-left: 2px;
+
+	background-color: #aaa;
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+}
+.post-un:hover{
+	color: red;
+	border-color: #000;
+	background-color: #ccc;
+}
+
+/* The contents on the bottom right of the post */
+.post-bottom{
+	align-items: center;
+	margin: 5px;
+	text-align: right;
+	display: flex;
+	position: absolute;
+	right: 17px;
+	font-family: "calibri";
+	font-weight: bold;
+	font-size: 20px;
+}
 
 
 
+.post-votes{
+	font-size: 30px;
+
+	margin: 0px 5px;
+}
+
+.post-upvote{
+	height: 40px;
+	width: 40px;
+	margin: 2px;
+
+	background-color: #aaa;
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+}
+
+.post-downvote{
+	height: 40px;
+	width: 40px;
+	margin: 2px;
+
+	background-color: #aaa;
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+}
+
+.post-date{
+	padding: 8px 5px;
+	margin-left: 2px;
+
+	background-color: #aaa;
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+}
 
 
-/* PROFILE PAGE */
+
+/* <-- SINGLE POST */
+
+
+
+/* <-- PROFILE PAGE */
 
 
 
