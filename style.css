@@ -547,9 +547,19 @@ button{
 	width: 40px;
 	margin: 2px;
 
+	filter: opacity(0.7);
 	background-color: #aaa;
-	border: 2px solid #3d3d3d;
+	background-image: url(images/upvote.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20px;
+	border: 2px solid #000;
 	border-radius: 7px;
+}
+.post-upvote:hover{
+	cursor: pointer;
+	filter:	opacity(1);
+	background-size: 25px;
 }
 
 .post-downvote{
@@ -557,9 +567,20 @@ button{
 	width: 40px;
 	margin: 2px;
 
+	filter: opacity(0.7);
 	background-color: #aaa;
-	border: 2px solid #3d3d3d;
+	background-image: url(images/upvote.png);
+	transform: rotate(180deg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20px;
+	border: 2px solid #000;
 	border-radius: 7px;
+}
+.post-downvote:hover{
+	cursor: pointer;
+	filter:	opacity(1);
+	background-size: 25px;
 }
 
 .post-date{
