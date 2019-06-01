@@ -457,6 +457,7 @@ button{
 /* The wrapper for the posts */
 .userPost{ 
 	padding: 20px;
+	margin: 10px 0px;
 }
 
 /* The container for the text to be displayed with the post */
@@ -596,6 +597,81 @@ button{
 
 /* <-- SINGLE POST */
 
+
+/* POST CREATOR --> */
+
+.profile-post-creator-wrapper{
+	padding: 20px;
+	margin: 10px 0px;
+}
+
+.profile-post-creator-content{
+	background-color: #ccc;
+	padding: 10px;
+	padding-right: 25px;
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+}
+
+.post-creator-top{
+	margin: 8px 0px;
+}
+
+.post-creator-title{
+	font-size: 30px;
+	font-weight: bold;
+	background-color: #aaa;
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+	padding: 2px 5px;
+}
+
+.profile-post-creator-content form{
+	display: block;
+	margin: 5px 5px;
+}
+
+.post-creator-head{
+	width: 50%;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 5px 0px;
+	font-family: 'calibri';
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+}
+
+.post-creator-content{
+	width: 100%;
+	font-size: 20px;
+	padding: 5px;
+	font-family: 'calibri';
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+}
+
+.post-creator-bottom{
+	margin: 8px 0px;
+	text-align: right;
+}
+
+.post-creator-btn{
+	font-size: 30px;
+	font-weight: bold;
+	background-color: #aaa;
+	border: 2px solid #3d3d3d;
+	border-radius: 7px;
+	padding: 2px 5px;
+}
+.post-creator-btn:hover{
+	cursor: pointer;
+	border-color: #000;
+	background-color: #ccc;
+	color: red;
+}
+
+/* <-- POST CREATOR */
 
 
 /* <-- PROFILE PAGE */

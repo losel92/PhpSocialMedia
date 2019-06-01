@@ -57,7 +57,24 @@
 	</div>
 
 	<div class="profile-posts-div">
-		<?php require 'userPosts.php'; ?>
+
+		<!-- Remember: only if the user is looking at their own profile page -->
+		<!-- Make a button for it to open and close -->
+		<div class="profile-post-creator-wrapper">
+			<div class="post-creator-top"><span class="post-creator-title">Write a new post!</span></div>
+			<div class="profile-post-creator-content">
+				<form action="" method="POST">
+					<input type="text" class="post-creator-head" placeholder="Give your post a title...">
+					<textarea rows="5" class="post-creator-content" placeholder="Write your post here..."></textarea>
+				</form>
+			</div>
+			<div class="post-creator-bottom"><span class="post-creator-btn">Post!</span></div>
+		</div>
+
+		<?php 
+			require 'userPosts.php'; 
+			getSinglePost($_SESSION['username'], '01/06/2019', 158, 'My Little Post', 'bla bla bla bla bla', '');
+		?>
 	</div>
 
 </div>
