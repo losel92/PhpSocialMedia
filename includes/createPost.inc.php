@@ -89,7 +89,7 @@
 
         //Shows the post
         $('.profile-post-creator-wrapper').after('<div class="userPost" id="<?php echo $postId ?>"><a href="#" class="post-top"><div class="post-picture" style="background-image: url(<?php echo $_SESSION['croppedPic'] ?>);"></div><span class="post-un"><?php echo $_SESSION['username']; ?></span></a> <div class="post-contents"><h2 class="post-headline"><?php echo $postHead; ?></h2><h3 class="post-text"><?php echo $postContent; ?></h3></div><div class="post-bottom"><span class="post-votes"><?php echo $likes; ?></span><div class="post-upvote"></div><div class="post-downvote"></div><span class="post-date"><?php echo date('d/m/Y', $timestamp); ?></span></div></div>');
-        $('#'+postId).hide().delay(200).fadeIn(500);
+        $('#<?php echo $postId ?>').hide().delay(200).fadeIn(500);
     }
     
 </script>
