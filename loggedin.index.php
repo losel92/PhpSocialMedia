@@ -23,6 +23,7 @@
 		</div>
 	</div>
 </div>
+
 <div id="profile-page-wrapper">
 	<div class="profile-column">
 		<div class="profile-img-hov" onclick="OpenModal('.form-contents')"><h1>Change Profile Picture</h1></div>
@@ -73,8 +74,30 @@
 		</div>
 
 		<?php 
-			require 'userPosts.php'; 
-			getSinglePost($_SESSION['username'], '01/06/2019', 158, 'My Little Post', 'bla bla bla bla bla', '');
+			//Opens a connection to the database
+			require 'includes/dbconnect.inc.php';
+			$conn = OpenCon();
+
+			require 'userPosts.php';
+			
+			$sql = "SELECT * FROM user_posts WHERE user_id=$_SESSION[userId] ORDER BY post_timestamp DESC";
+			if($result = mysqli_query($conn, $sql)){
+				//If the user has posted anything // ie. if the query returns any value
+				if (mysqli_num_rows($result) > 0) {
+					//The loop that shows all the posts
+					while($row = mysqli_fetch_assoc($result)) {
+						getSinglePost($row['username'], date('d/m/Y',$row['post_timestamp']), $row['likes'], $row['head'], $row['content'], $row['edit_timestamp']);
+					}
+				}
+				//If the user hasn't posted anything yet
+				else{
+
+				}
+			}
+			//There was an error
+			else{
+				?><script>console.log("SQL Error");</script><?php
+			}
 		?>
 	</div>
 

@@ -259,7 +259,6 @@ button{
 
 .profile-column{
 	width: 400px;
-	height: 1000px;
 	background: #ccc;
 	border-right: 3px solid #3d3d3d;
 	font-family: "oswald";
@@ -269,7 +268,7 @@ button{
 
 .profile-posts-div{
 	width: 100%;
-	height: 1000px;
+	min-height: 1000px;
 	background: grey;
 }
 
@@ -457,7 +456,7 @@ button{
 /* The wrapper for the posts */
 .userPost{ 
 	padding: 20px;
-	margin: 10px 0px;
+	margin: -30px 0px 50px 0px;
 }
 
 /* The container for the text to be displayed with the post */

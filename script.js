@@ -189,6 +189,8 @@ $(document).ready(function(){
         var postHead = $('.post-creator-head').val();
         var postContent = $('.post-creator-content').val();
 
+        console.log(postHead);
+
         //Passes the information to the php file
         $('#post-creator-load').load("includes/createPost.inc.php", {
             postHead: postHead,
