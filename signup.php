@@ -39,7 +39,7 @@ require 'header.php';
 					</div>
 				</div>
 				<button type="submit" name="submit" class="btn" id="signup-btn">SIGNUP</button>
-				<p class="mybooty"></p>
+				<p class="pload"></p>
 			</form>
 		</div>
 	</div>

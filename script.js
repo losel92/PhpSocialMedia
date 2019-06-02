@@ -165,9 +165,10 @@ $(document).ready(function(){
         var birthday = $('#signup-birthday').val();
         var gender = $('#signup-gender').val();
 
-        console.log("we got here ladies and gentlemen");
+        console.log(username);
+
         //Passes the information to the php file
-        $('.mybooty').load("includes/signup.inc.php", {
+        $('.pload').load("includes/signup.inc.php", {
             username: username,
             firstname: firstname,
             lastname: lastname,
@@ -176,6 +177,22 @@ $(document).ready(function(){
             tel: tel,
             birthday: birthday,
             gender: gender
+        });
+    });
+
+    //Runs when the user tries to upload a new post
+    $('.post-creator-btn').click(function(event){
+        //Prevents the submit button from redirecting to createPost.inc.php
+        event.preventDefault();
+
+        //Gets the title and content of the new post
+        var postHead = $('.post-creator-head').val();
+        var postContent = $('.post-creator-content').val();
+
+        //Passes the information to the php file
+        $('#post-creator-load').load("includes/createPost.inc.php", {
+            postHead: postHead,
+            postContent: postContent
         });
     });
 
