@@ -165,8 +165,6 @@ $(document).ready(function(){
         var birthday = $('#signup-birthday').val();
         var gender = $('#signup-gender').val();
 
-        console.log(username);
-
         //Passes the information to the php file
         $('.pload').load("includes/signup.inc.php", {
             username: username,
@@ -189,8 +187,6 @@ $(document).ready(function(){
         var postHead = $('.post-creator-head').val();
         var postContent = $('.post-creator-content').val();
 
-        console.log(postHead);
-
         //Passes the information to the php file
         $('#post-creator-load').load("includes/createPost.inc.php", {
             postHead: postHead,
@@ -198,5 +194,71 @@ $(document).ready(function(){
         });
     });
 
+    var clickedPostID;
+    //Gets the selected post to edit / delete
+    $(document).on("click",".post-settings", function () {
+        clickedPostID = $(this).parent().parent().attr('id');
+    });
+
+    //Post editing popup form
+    $('.post-settings-edit').click(function(){
+        //Sets the text in the edit textbox to match the post text
+        var editHead = $('#'+clickedPostID).children('.post-contents').children('.post-headline').text();
+        var editContents = $('#'+clickedPostID).children('.post-contents').children('.post-text').text();
+        editContents = editContents.trimStart().trimEnd();
+        $('#post-edit-headline').val(editHead);
+        $('#post-edit-contents').val(editContents);
+    });
+
+    //Post Editing submit
+    $('#post-edit-submit').click(function(){
+        //Gets the edited headline and post content
+        var postHead = $('#post-edit-headline').val();
+        var postContents = $('#post-edit-contents').val();
+        var postId = clickedPostID;
+
+        //Sends an ajax request to post-modify.inc.php
+        $.ajax({
+            type: "POST",
+            url: "includes/post-modify.inc.php" ,
+            data: { postHead: postHead, postContents: postContents, postId: postId },
+            success : function(status) { 
+                if(status == 0){
+                    alert("There was an error when trying to edit your post, please try again later.");
+                }
+                else if(status == 1){
+                    console.log("Post Succesfully Edited");
+                    location.reload();
+                }
+                else{
+                    console.log(status);
+                }
+            }
+        });
+    });
+
+    //Post Delete
+    $('.post-delete-yes').click(function(){
+        var theId = clickedPostID;
+
+        //Sends an ajax request to post-modify.inc.php
+        $.ajax({
+            type: "POST",
+            url: "includes/post-modify.inc.php" ,
+            data: { theId: theId },
+            success : function(status) { 
+                if(status == 0){
+                    alert("There was an error when trying to delete your post, please try again later.");
+                }
+                else if(status == 1){
+                    console.log("Post Succesfully Deleted");
+                    location.reload();
+                }
+                else{
+                    console.log(status);
+                }
+            }
+        });
+    });
 
 });

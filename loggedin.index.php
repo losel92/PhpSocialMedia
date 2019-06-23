@@ -1,7 +1,8 @@
-<div class="form-wrapper" id="pic-form-popup-wrapper">
-	<div class="form-contents" id="pic-form-popup-contents">
+<!-- The picture upload and crop popup form -->
+<div class="form-wrapper popup-form-wrapper" id="pic-form-popup-wrapper">
+	<div class="form-contents popup-form-contents" id="pic-form-popup-contents">
 		<form class="form-popup" id="select-pic-form" method="post" action="" enctype="multipart/form-data">
-		    <span class="closeX" onclick="CloseModal('.form-contents')">&times;</span>
+		    <span class="closeX" id="pic-form-x" onclick="CloseModal('.form-contents')">&times;</span>
 		    <h1>Upload a new profile picture!</h1>
 		    <h3>OBS: The cropping feature works better if your image is 1:1</h3>
 		    <input type="file" name="imgfile" id="imgfile" />
@@ -26,7 +27,7 @@
 
 <div id="profile-page-wrapper">
 	<div class="profile-column">
-		<div class="profile-img-hov" onclick="OpenModal('.form-contents')"><h1>Change Profile Picture</h1></div>
+		<div class="profile-img-hov" onclick="OpenModal('#pic-form-popup-contents')"><h1>Change Profile Picture</h1></div>
 		<img src="<?php echo $_SESSION['croppedPic'] ?>" class="profile-column-photo">
 		<p class="profile-column-big"><?php echo $_SESSION['username']; ?></p>
 
@@ -86,12 +87,12 @@
 				if (mysqli_num_rows($result) > 0) {
 					//The loop that shows all the posts
 					while($row = mysqli_fetch_assoc($result)) {
-						getSinglePost($row['username'], date('d/m/Y',$row['post_timestamp']), $row['likes'], $row['head'], $row['content'], $row['edit_timestamp']);
+						getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $row['likes'], $row['head'], $row['content'], $row['edit_timestamp']);
 					}
 				}
 				//If the user hasn't posted anything yet
 				else{
-
+					echo "Your posts will appear here!";
 				}
 			}
 			//There was an error

@@ -123,7 +123,7 @@ if(isset($_POST['username'])){
 
 //If the user simply inserts the url without completing the signup form they'll get redirected to index.php
 else{
-	$msg = 'You fucked up somewhere Losel';
+	header("Location: ../index.php");
 }
 
 ?>
