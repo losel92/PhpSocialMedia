@@ -178,6 +178,20 @@ $(document).ready(function(){
         });
     });
 
+    //Profile info logo animation
+    $('.profile-column').mouseenter(function(){
+        $('#profile-edit-logo').fadeIn(200);
+    });
+    $('.profile-column').mouseleave(function(){
+        $('#profile-edit-logo').fadeOut(200);
+    });
+
+    //Profile info edit
+    $('#profile-edit-logo').click(function(){
+        OpenModal('#info-edit-form-container');
+    });
+    
+
     //Runs when the user tries to upload a new post
     $('.post-creator-btn').click(function(event){
         //Prevents the submit button from redirecting to createPost.inc.php

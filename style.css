@@ -265,6 +265,9 @@ button{
 	padding: 0px 20px;
 	text-align: center;
 }
+.profile-column:hover + #profile-edit-logo{
+	display: block;
+}
 
 .profile-posts-div{
 	width: 100%;
@@ -360,11 +363,94 @@ button{
 	text-align: left;
 }
 
+#profile-sec-hov{
+	position: fixed;
+	width: 310px;
+	height: 100%;
+	background: #ccc;
+	border-right: 3px solid #3d3d3d;
+	font-family: "oswald";
+	padding: 0px 20px;
+	text-align: center;
+	opacity: 0;
+}
+#profile-sec-hov:hover{
+	opacity: 1;
+	background: transparent
+}
+
+#profile-edit-logo{
+	height: 50px;
+	width: 50px;
+	background-color: #000;
+	position: absolute;
+	left: 257px;
+	margin-top: -55px;
+	cursor: pointer;
+	display: none;
+}
+
 /* <-- INFORMATION COLUMN */
 
+/* INFO EDIT POPUP FORM --> */
 
+#info-edit-form-container{
+	width: 800px;
+	margin-top: 150px;
+	padding: 10px;
+	border-radius: 5px;
+}
+#info-edit-form-container input{
+	height: 30px;
+	padding: 3px;
+	margin: 5px;
+	font-size: 25px;
+	font-family: "Calibri";
+	border: 2px solid #3d3d3d;
+	border-radius: 3px;
+}
+#info-edit-x{
+	position: absolute;
+	right: 235px;
+	margin-top: -28px;
+	font-size: 40px;
+}
+.flex{
+	display: flex;
+}
+#info-edit-form-container #info-edit-name-flex input{
+	width: 50%;
+	margin: 5px;
+	height: 30px;
+	padding: 3px;
+	font-size: 25px;
+	font-family: "Calibri";
+	border: 2px solid #3d3d3d;
+	border-radius: 3px;
+}
+#info-edit-email {
+	width: 70%;
+}
+#info-edit-bday{
+	width: 30%;
+}
+#info-edit-submit{
+	font-family: "Calibri";
+	font-size: 25px;
+	padding: 3px 5px;
+	margin: 5px;
+	background-color: #aaa;
+	color: #3d3d3d;
+	border: 2px solid #3d3d3d;
+}
+#info-edit-submit:hover{
+	background-color: #8e8e8e;
+	color: #000;
+}
 
-/* POPUP FORM --> */
+/* <-- INFO EDIT POPUP FORM */
+
+/* IMG POPUP FORM --> */
 
 .popup-form-wrapper{
 	text-align: center;
@@ -453,7 +539,6 @@ button{
 }
 
 /* <-- POPUP FORM */
-
 
 /* SINGLE POST --> */
 

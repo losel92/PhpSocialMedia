@@ -25,11 +25,29 @@
 	</div>
 </div>
 
+<!-- Profile info edit popup -->
+<div class="form-wrapper popup-form-wrapper">
+	<div class="form-contents popup-form-contents" id="info-edit-form-container">
+		<span class="closeX" id="info-edit-x" onclick="CloseModal('.form-contents')">&times;</span>
+		<div class="flex" id="info-edit-name-flex">
+			<input type="text" id="info-edit-fname" value="<?php echo $_SESSION['firstName']; ?>" placeholder="First Name" required>
+			<input type="text" id="info-edit-lname" value="<?php echo $_SESSION['lastName']; ?>" placeholder="Last Name" required>
+		</div>
+		<div class="flex" id="info-edit-mailbd-flex">
+			<input type="text" id="info-edit-email" value="<?php echo $_SESSION['email']; ?>" placeholder="Email" required>
+			<input type="date" id="info-edit-bday" <?php echo 'max="' . date('Y') . '-' . date('m') . '-' . date('d') . '"'; ?> value="<?php echo $_SESSION['birthday']; ?>" placeholder="Birthday" required>
+		</div>
+		<button id="info-edit-submit">Edit</button>
+	</div>
+</div>
+
 <div id="profile-page-wrapper">
 	<div class="profile-column">
 		<div class="profile-img-hov" onclick="OpenModal('#pic-form-popup-contents')"><h1>Change Profile Picture</h1></div>
 		<img src="<?php echo $_SESSION['croppedPic'] ?>" class="profile-column-photo">
 		<p class="profile-column-big"><?php echo $_SESSION['username']; ?></p>
+
+		<div id="profile-edit-logo"></div>
 
 		<div class="profile-column-agegender">
 			<div class="row1">
