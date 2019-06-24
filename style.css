@@ -479,10 +479,6 @@ button{
     border-radius: 1%;
 }
 
-#pic-form-popup-contents{
-	width: 800px;
-}
-
 .closeX{
   color: #000;
   float: right;
@@ -501,9 +497,14 @@ button{
   cursor: pointer;
 }
 
+#pic-form-popup-contents{
+	width: 800px;
+	margin-bottom: 100px;
+}
+
 #select-pic-form h1{
 	font-size: 50px;
-	margin-bottom: 0px;
+	margin-bottom: 20px;
 }
 
 #imgfile{
@@ -519,6 +520,8 @@ button{
 	padding: 10px 10px;
 	font-size: 17px;
 	font-weight: lighter;
+	margin-bottom: 10px;
+	margin-top: -20px;
 }
 
 #img-crop-btn{
