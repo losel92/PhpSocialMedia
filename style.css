@@ -382,7 +382,10 @@ button{
 #profile-edit-logo{
 	height: 50px;
 	width: 50px;
-	background-color: #000;
+	background: url('images/edit-logo.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto 50px;
 	position: absolute;
 	left: 257px;
 	margin-top: -55px;
@@ -407,7 +410,7 @@ button{
 	font-size: 25px;
 	font-family: "Calibri";
 	border: 2px solid #3d3d3d;
-	border-radius: 3px;
+	border-radius: 5px;
 }
 #info-edit-x{
 	position: absolute;
@@ -426,7 +429,7 @@ button{
 	font-size: 25px;
 	font-family: "Calibri";
 	border: 2px solid #3d3d3d;
-	border-radius: 3px;
+	border-radius: 5px;
 }
 #info-edit-email {
 	width: 70%;
@@ -442,6 +445,7 @@ button{
 	background-color: #aaa;
 	color: #3d3d3d;
 	border: 2px solid #3d3d3d;
+	border-radius: 5px;
 }
 #info-edit-submit:hover{
 	background-color: #8e8e8e;

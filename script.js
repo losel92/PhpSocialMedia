@@ -190,7 +190,28 @@ $(document).ready(function(){
     $('#profile-edit-logo').click(function(){
         OpenModal('#info-edit-form-container');
     });
+    $('#info-edit-submit').click(function(){
+        var fname = $('#info-edit-fname').val();
+        var lname = $('#info-edit-lname').val();
+        var email = $('#info-edit-email').val();
+        var bday = $('#info-edit-bday').val();
+        console.log("we got here");
     
+        $.ajax({ //Ajax request
+            type:'POST',
+            url:'includes/profile-info-edit.inc.php',
+            data: {fname: fname, lname: lname, email: email, bday: bday},
+            success:function(status){
+                if(status == 1){
+                    location.reload();
+                }
+                else{
+                    console.log(status);
+                }
+            }
+        })    
+
+    });
 
     //Runs when the user tries to upload a new post
     $('.post-creator-btn').click(function(event){
