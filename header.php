@@ -7,6 +7,7 @@
 	<title>Fictional Website</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="AdditionalStuff/jquery.Jcrop.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
