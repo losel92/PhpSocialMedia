@@ -20,7 +20,7 @@
                     <input type="text" id="post-edit-headline">
                     <textarea type="text" id="post-edit-contents"></textarea>
                     <input type="text" value="<?php echo $post_id; ?>" readonly style="display: none;"> 
-                    <button type="submit" id="post-edit-submit" class="post-edit-submit" onclick="editPost();">Edit</button>
+                    <button type="submit" id="post-edit-submit" class="post-edit-submit" onclick="editPost();">Save</button>
                 </div>
             </div>
         </div>
