@@ -1,4 +1,4 @@
-# PhpSocialMedia
+### PhpSocialMedia
 
 This started as a very simple login system I made back when I was learning about databases and SQL. Well, after some time coding in php, I wanted to challenge myself and come up with a big project (given my experience and skill level at that time), so why not take something I coded myself and make it 1000x better? So that's exactly what I did :D
 
