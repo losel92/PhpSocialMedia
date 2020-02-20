@@ -26,7 +26,7 @@
 						</select>
 					</div>
 				</div>
-				<button type="submit" name="submit" class="btn" id="signup-btn">SIGNUP</button>
+				<button type="submit" name="submit" class="btn" id="signup-btn" tabindex="9">SIGNUP</button>
 				<p class="pload"></p>
 			</form>
 		</div>
