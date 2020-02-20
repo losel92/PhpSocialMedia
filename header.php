@@ -1,18 +1,21 @@
-<?php  
-	session_start(); //Starts the session if a user is logged in
+<?php session_start(); //Starts the session if a user is logged in ?>
 
-	
-?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Fictional Website</title>
+
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="AdditionalStuff/jquery.Jcrop.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+
 	<script type="text/javascript" src="AdditionalStuff/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="AdditionalStuff/jquery.Jcrop.min.js"></script>
+	
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
