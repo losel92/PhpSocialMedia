@@ -42,6 +42,10 @@
 
 <div id="profile-page-wrapper">
 	<div class="profile-column">
+
+		<!-- Includes the js needed for handling changes in the profile info and picture -->
+		<script type="text/javascript" src="./scripts/profile.js"></script>
+
 		<div class="profile-img-hov" onclick="OpenModal('#pic-form-popup-contents')"><h1>Change Profile Picture</h1></div>
 		<img src="<?php echo $_SESSION['croppedPic'] ?>" class="profile-column-photo">
 		<p class="profile-column-big"><?php echo $_SESSION['username']; ?></p>
@@ -96,6 +100,8 @@
 			$conn = OpenCon();
 
 			require './posts/userPosts.php';
+
+			?> <script type="text/javascript" src="./scripts/posts.js"></script> <?php //Includes the js needed for handling posts
 			
 			$sql = "SELECT * FROM user_posts WHERE user_id=$_SESSION[userId] ORDER BY post_timestamp DESC";
 			if($result = mysqli_query($conn, $sql)){

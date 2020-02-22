@@ -6,7 +6,7 @@ if(isset($_POST['postHead'])){
     $status = 1;
 
     //Opens a connection to the database
-	require 'dbconnect.inc.php';
+	require '../includes/dbconnect.inc.php';
     $conn = OpenCon();
     session_start();
 
@@ -53,7 +53,7 @@ else if(isset($_POST['theId'])){
     $status = 1;
 
     //Opens a connection to the database
-	require 'dbconnect.inc.php';
+	require '../includes/dbconnect.inc.php';
     $conn = OpenCon();
     session_start();
 
