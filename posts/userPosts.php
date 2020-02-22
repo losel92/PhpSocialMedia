@@ -1,3 +1,5 @@
+<!-- This fuction takes all the post info and returns an HTML object -->
+
 <?php
     function getSinglePost($post_id, $post_un, $post_date, $post_likes, $post_title, $post_content, $edit_date){
 ?>

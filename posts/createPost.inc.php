@@ -2,7 +2,7 @@
     if(isset($_POST['postContent'])){
 
         //Opens a connection to the database and starts the session
-        require 'dbconnect.inc.php';
+        require '../includes/dbconnect.inc.php';
         $conn = OpenCon();
         session_start();
 
@@ -45,7 +45,7 @@
                     $postId = $row[0];
 
                     $error = 'noError';
-                    require '../userPosts.php';
+                    require 'userPosts.php';
                 }
                 else{
                     $error = 'sqlError';

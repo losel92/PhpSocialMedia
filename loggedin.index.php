@@ -78,11 +78,10 @@
 	<div class="profile-posts-div">
 
 		<!-- Remember: only if the user is looking at their own profile page -->
-		<!-- Make a button for it to open and close -->
 		<div class="profile-post-creator-wrapper">
 			<div class="post-creator-top"><span class="post-creator-title">Write a new post!</span></div>
 			<div class="profile-post-creator-content">
-				<form method="POST" action="includes/createPost.inc.php">
+				<form method="POST" action="./posts/createPost.inc.php">
 					<input type="text" class="post-creator-head" placeholder="Give your post a title...">
 					<textarea rows="5" class="post-creator-content" placeholder="Write your post here..."></textarea>
 			</div>
@@ -96,11 +95,11 @@
 			require 'includes/dbconnect.inc.php';
 			$conn = OpenCon();
 
-			require 'userPosts.php';
+			require './posts/userPosts.php';
 			
 			$sql = "SELECT * FROM user_posts WHERE user_id=$_SESSION[userId] ORDER BY post_timestamp DESC";
 			if($result = mysqli_query($conn, $sql)){
-				//If the user has posted anything // ie. if the query returns any value
+				//If the user has posted anything // ie. if the query returns any values
 				if (mysqli_num_rows($result) > 0) {
 					//The loop that shows all the posts
 					while($row = mysqli_fetch_assoc($result)) {
