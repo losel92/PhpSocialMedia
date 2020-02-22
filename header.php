@@ -18,6 +18,9 @@
 	<script type="text/javascript" src="AdditionalStuff/jquery.Jcrop.min.js"></script>
 	
 	<script type="text/javascript" src="script.js"></script>
+
+	<!-- General global js functions -->
+	<script type="text/javascript" src="./scripts/general.js"></script> 
 </head>
 <body>
 	<?php include 'includes/signuperrors.inc.php'; ?>
@@ -27,15 +30,18 @@
 			</a>
 
 			<ul class="header-ul">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="#">About Us</a></li>
-				<li><a href="#">Contact</a></li>
+				<li id="header-profile"><a href="index.php">Profile</a></li>
+				<li id="header-feed"><a href="#">Feed</a></li>
+				<li id="header-search"><a href="#">Search</a></li>
 			</ul>
 
 
 			<div class="login-wrapper">
 
 				<?php if(!isset($_SESSION['userId'])){ //If there is no user logged in ?>
+
+					<!-- Includes the js needed for handling signup -->
+					<script type="text/javascript" src="./scripts/signup.js"></script>
 
 					<form action="includes/login.inc.php" method="post" id="login-form">
 						<input type="text" name="usernamemail" placeholder="<?php if($error == 'nouser'){echo $errorMsg;} else{echo 'username/email';} ?>" value="<?php echo $username ?>">
