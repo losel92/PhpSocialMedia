@@ -31,3 +31,25 @@ CREATE TABLE `user_posts` (
   `content` varchar(12000) DEFAULT NULL,
   `edit_timestamp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `posts_likes`
+--
+
+CREATE TABLE posts_likes (
+	id int(64) PRIMARY KEY AUTO_INCREMENT,
+    user_id int(11),
+    post_id int(11),
+    status int(5)
+)
+
+--
+-- Table structure for table `posts_comments`
+--
+
+CREATE TABLE posts_comments (
+	id int(64) PRIMARY KEY AUTO_INCREMENT,
+    user_id int(11),
+    post_id int(11),
+    body varchar(1000)
+)
