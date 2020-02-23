@@ -109,7 +109,7 @@
 				if (mysqli_num_rows($result) > 0) {
 					//The loop that shows all the posts
 					while($row = mysqli_fetch_assoc($result)) {
-						getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $row['likes'], $row['head'], $row['content'], $row['edit_timestamp']);
+						getSinglePost($row['post_id'], $row['username'], date('d/m/Y', $row['post_timestamp']), $row['likes'], $row['head'], $row['content'], $row['edit_timestamp']);
 					}
 				}
 				//If the user hasn't posted anything yet

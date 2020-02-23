@@ -1,7 +1,7 @@
 <?php
 
 //Post Edit
-if(isset($_POST['postHead'])){
+if (isset($_POST['postHead'])) {
     
     $status = 1;
 
@@ -12,7 +12,7 @@ if(isset($_POST['postHead'])){
 
     $postHead = $_POST['postHead'];
     $postContents = $_POST['postContents'];
-    $postId = substr($_POST['postId'], 4);
+    $postId = $_POST['postId'];
     $userId = $_SESSION['userId'];
     $edit_time = time();
     
@@ -48,7 +48,7 @@ if(isset($_POST['postHead'])){
     echo $status;
 }
 //Post Delete
-else if(isset($_POST['theId'])){
+else if (isset($_POST['theId'])) {
 
     $status = 1;
 
@@ -57,7 +57,7 @@ else if(isset($_POST['theId'])){
     $conn = OpenCon();
     session_start();
 
-    $postId = substr($_POST['theId'], 4);
+    $postId = $_POST['theId'];
     $userId = $_SESSION['userId'];
 
     $sql = "SELECT * FROM user_posts WHERE post_id=? AND user_id=?";
@@ -91,7 +91,84 @@ else if(isset($_POST['theId'])){
     }
     echo $status;
 }
+else if (isset($_POST['action'])) {
+
+    $postId;
+    $action = $_POST['action'];
+
+    //Checks if the postId was passed, if not returns an error
+    if (isset($_POST['postId'])) {
+        $postId = $_POST['postId'];
+    }
+    else {
+        echo false;
+    }
+
+    //Upvote / Downvote post
+    if ($action == "upvote" || $action == "downvote" ) {
+        $status = 1;
+
+        //Opens a connection to the database
+        require '../includes/dbconnect.inc.php';
+        $conn = OpenCon();
+        session_start();
+
+        //The id of the user trying to make the changes
+        $userId = $_SESSION['userId'];
+
+        //Timestamp of the action
+        $edit_time = time();
+        
+        $sql = "SELECT * FROM user_posts WHERE post_id=$postId AND user_id=$userId";
+
+        if($result = mysqli_query($conn, $sql)){
+            if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)) {
+                    
+                    $likes = $row['likes']; //Gets the current amount of likes
+                    $likes = $action == "upvote" ? $likes+1 : $likes-1; //Increases or decreases that number by one depending on the action chosen
+
+                    //Actually updates the post in the database
+                    $new_sql = "UPDATE user_posts SET likes=$likes WHERE post_id=$postId";
+                    
+                    if ($new_result = mysqli_query($conn, $new_sql)) { //Success
+                        $returnObj = new \stdClass();
+                        $returnObj->StatusCode = 10;
+                        $returnObj->Content = $likes;
+                        $jsonRes = json_encode($returnObj);
+                        echo $jsonRes;
+                    }
+                    else { //SQL Error
+                        $returnObj = new \stdClass();
+                        $returnObj->StatusCode = 10;
+                        $returnObj->ErrorMsg = "SQL Error";
+                        $jsonRes = json_encode($returnObj);
+                        echo $jsonRes;
+                    }
+                }
+            }
+            else{ //SQL Error
+                $returnObj = new \stdClass();
+                $returnObj->StatusCode = 10;
+                $returnObj->ErrorMsg = "postId or userId mismatch";
+                $jsonRes = json_encode($returnObj);
+                echo $jsonRes;
+            }
+        }
+        //There was an error
+        else{
+            $returnObj = new \stdClass();
+            $returnObj->StatusCode = 10;
+            $returnObj->ErrorMsg = "SQL Error";
+            $jsonRes = json_encode($returnObj);
+            echo $jsonRes;
+        }
+    }
+    else {
+        header("Location: ../index.php");
+    }
+}
 //If the user simply enters the url to this page they'll be redirected to index.php
-else{
+else {
     header("Location: ../index.php");
 }

@@ -95,7 +95,7 @@ $(document).ready(function() {
 
     $.ajax({
       //Ajax request
-      url: "imgUpload.php",
+      url: "./imgUpload.php",
       type: "post",
       data: fd,
       contentType: false,
@@ -175,7 +175,7 @@ $(document).ready(function() {
         //Calls the php file to upload the img
         $.ajax({
           type: "POST",
-          url: "../imgUpload.php",
+          url: "./imgUpload.php",
           data: { croppedPath: croppedImgPath },
           success: function() {
             console.log("Cropped img path: " + croppedImgPath)

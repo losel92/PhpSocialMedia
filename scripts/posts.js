@@ -89,13 +89,52 @@ $(document).ready(() => {
   })
 
   var clickedPostID
-  //Gets the selected post to edit / delete
-  $(document).on("click", ".post-settings", function() {
+  //Strores the id of the last clicked post
+  $(document).on("click", ".userPost", function(e) {
     clickedPostID = $(this)
-      .parent()
-      .parent()
       .attr("id")
+      .substr(4)
     console.log(clickedPostID)
     lastClickedPost = clickedPostID
+
+    let chosenAction = ""
+
+    //Upvotes the post
+    if ($(e.target).attr("class") == "post-upvote") {
+      console.log("Upvote me!")
+      chosenAction = "upvote"
+    }
+    //Downvotes the post
+    else if ($(e.target).attr("class") == "post-downvote") {
+      console.log("Downvote me!")
+      chosenAction = "downvote"
+    }
+    if (chosenAction != "") {
+      //We actually want to update something
+
+      //Calls the php file that updates the database
+      $.ajax({
+        type: "POST",
+        data: {
+          action: chosenAction,
+          postId: clickedPostID
+        },
+        url: "posts/post-modify.inc.php",
+        success: data => {
+          console.log(data)
+          result = JSON.parse(data)
+          if (result.StatusCode == 10) {
+            $(e.target)
+              .siblings(".post-votes")
+              .html(result.Content)
+          } else {
+            console.log(result.ErrorMsg)
+          }
+        },
+        error: err => {
+          console.log(err)
+        }
+      })
+    }
   })
 })
