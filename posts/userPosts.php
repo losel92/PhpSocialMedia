@@ -57,4 +57,46 @@
     </div>
 <?php 
     }
-?>
+
+    function getAllPostsForSingleUser($uid) {
+        //Opens a connection to the database
+        require 'includes/dbconnect.inc.php';
+        $conn = OpenCon();
+
+
+        $sql = "SELECT * FROM user_posts WHERE user_id=$uid ORDER BY post_timestamp DESC";
+        if($result = mysqli_query($conn, $sql)){
+            //If the user has posted anything // ie. if the query returns any values
+            if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)) {
+                    $postId = $row['post_id'];
+                    $likes = 0;
+
+                    //Get and calculate likes (upvotes and downvotes)
+                    $likesSql = "SELECT * FROM posts_likes WHERE post_id=$postId";
+                    if ($likesResult = mysqli_query($conn, $likesSql)) {
+                        if (mysqli_num_rows($likesResult) > 0) {
+                            while ($likesRow = mysqli_fetch_assoc($likesResult)) {
+                                if ($likesRow['status'] == 1) { $likes++; }
+                                else if ($likesRow['status'] == 0) { $likes--; }
+                            }
+                        }
+                    }
+
+                    //Get each post individually
+                    getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $likes, $row['head'], $row['content'], $row['edit_timestamp']);
+                }
+            }
+            //If the user hasn't posted anything yet
+            else{
+                echo "Your posts will appear here!";
+            }
+        }
+        //There was an error
+        else{
+            ?><script>console.log("SQL Error");</script><?php
+        }
+
+        //Closes the connection
+        $conn->close();
+    }
