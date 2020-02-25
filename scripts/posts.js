@@ -93,23 +93,30 @@ $(document).ready(() => {
       .attr("id")
       .substr(4)
     console.log(clickedPostID)
-    lastClickedPost = clickedPostID
+    lastClickedPost = "post" + clickedPostID
 
     let chosenAction = ""
+    let likes = parseInt(
+      $(e.target)
+        .siblings(".post-votes")
+        .html()
+    )
 
     //Upvotes the post
     if ($(e.target).attr("class") == "post-upvote") {
       console.log("Upvote me!")
       chosenAction = "upvote"
+      likes++
     }
     //Downvotes the post
     else if ($(e.target).attr("class") == "post-downvote") {
       console.log("Downvote me!")
       chosenAction = "downvote"
+      likes--
     }
-    if (chosenAction != "") {
-      //We actually want to update something
 
+    //We actually want to update something
+    if (chosenAction != "") {
       //Calls the php file that updates the database
       $.ajax({
         type: "POST",
@@ -120,11 +127,14 @@ $(document).ready(() => {
         url: "posts/post-modify.inc.php",
         success: data => {
           console.log(data)
+
           result = JSON.parse(data)
+
+          //If the post was up/downvoted successfully, we update the DOM with the new value
           if (result.StatusCode == 10) {
             $(e.target)
               .siblings(".post-votes")
-              .html(result.Content)
+              .html(likes)
           } else {
             console.log(result.ErrorMsg)
           }
