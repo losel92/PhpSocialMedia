@@ -20,7 +20,8 @@
 	<script type="text/javascript" src="script.js"></script>
 
 	<!-- General global js functions -->
-	<script type="text/javascript" src="./scripts/general.js"></script> 
+	<script type="text/javascript" src="./scripts/general.js"></script>
+	<script type="text/javascript" src="./Security/general.js"></script> 
 </head>
 <body>
 	<?php include 'includes/signuperrors.inc.php'; ?>
