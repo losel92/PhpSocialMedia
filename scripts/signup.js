@@ -18,7 +18,7 @@ $(document).ready(function() {
     var gender = $("#signup-gender").val()
 
     //Passes the information to the php file
-    $(".pload").load("../includes/signup.inc.php", {
+    $(".pload").load("./includes/signup.inc.php", {
       username: username,
       firstname: firstname,
       lastname: lastname,

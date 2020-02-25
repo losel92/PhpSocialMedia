@@ -25,8 +25,6 @@ function editPost() {
   var postContents = $("#post-edit-contents").val()
   var postId = lastClickedPost
 
-  console.log("hey we're here boi")
-
   //Sends an ajax request to post-modify.inc.php
   $.ajax({
     type: "POST",

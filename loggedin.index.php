@@ -96,31 +96,13 @@
 
 		<?php 
 			//Opens a connection to the database
-			require 'includes/dbconnect.inc.php';
-			$conn = OpenCon();
+			//require 'includes/dbconnect.inc.php';
+			//$conn = OpenCon();
 
 			require './posts/userPosts.php';
 
 			?> <script type="text/javascript" src="./scripts/posts.js"></script> <?php //Includes the js needed for handling posts
-			
-			$sql = "SELECT * FROM user_posts WHERE user_id=$_SESSION[userId] ORDER BY post_timestamp DESC";
-			if($result = mysqli_query($conn, $sql)){
-				//If the user has posted anything // ie. if the query returns any values
-				if (mysqli_num_rows($result) > 0) {
-					//The loop that shows all the posts
-					while($row = mysqli_fetch_assoc($result)) {
-						getSinglePost($row['post_id'], $row['username'], date('d/m/Y', $row['post_timestamp']), $row['likes'], $row['head'], $row['content'], $row['edit_timestamp']);
-					}
-				}
-				//If the user hasn't posted anything yet
-				else{
-					echo "Your posts will appear here!";
-				}
-			}
-			//There was an error
-			else{
-				?><script>console.log("SQL Error");</script><?php
-			}
+			getAllPostsForSingleUser($_SESSION['userId']);
 		?>
 	</div>
 
