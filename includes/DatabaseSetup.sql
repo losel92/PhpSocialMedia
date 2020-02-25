@@ -15,7 +15,7 @@ CREATE TABLE `users` (
   `phone_number` varchar(32) DEFAULT NULL,
   `profile_picture` varchar(256) DEFAULT NULL,
   `cropped_picture` varchar(1024) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
 
 --
 -- Table structure for table `user_posts`
@@ -26,21 +26,20 @@ CREATE TABLE `user_posts` (
   `user_id` int(11) DEFAULT NULL,
   `username` varchar(32) DEFAULT NULL,
   `post_timestamp` int(11) DEFAULT NULL,
-  `likes` int(11) DEFAULT NULL,
   `head` varchar(64) DEFAULT NULL,
   `content` varchar(12000) DEFAULT NULL,
   `edit_timestamp` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
 
 --
 -- Table structure for table `posts_likes`
 --
 
 CREATE TABLE posts_likes (
-	id int(64) PRIMARY KEY AUTO_INCREMENT,
     user_id int(11),
     post_id int(11),
-    status int(5)
+    status int(5),
+    PRIMARY KEY (user_id, post_id)
 )
 
 --
@@ -48,8 +47,8 @@ CREATE TABLE posts_likes (
 --
 
 CREATE TABLE posts_comments (
-	id int(64) PRIMARY KEY AUTO_INCREMENT,
     user_id int(11),
     post_id int(11),
-    body varchar(1000)
+    body varchar(1000),
+    PRIMARY KEY (user_id, post_id)
 )
