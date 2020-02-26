@@ -633,15 +633,18 @@ button {
   right: 22px;
 
   filter: opacity(0.7);
+  background: url(./images/settings.png);
   background-color: #aaa;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20px;
+  background-size: 35px;
   border: 2px solid #000;
   border-radius: 7px;
 }
 .post-settings:hover {
   cursor: pointer;
+  filter: opacity(1);
+  background-size: 40px;
 }
 
 /* The contents on the bottom right of the post */
