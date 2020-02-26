@@ -102,17 +102,15 @@ $(document).ready(() => {
         .html()
     )
 
-    //Upvotes the post
+    //Upvote the post
     if ($(e.target).hasClass("post-upvote")) {
       console.log("Upvote me!")
       chosenAction = "upvote"
-      likes++
     }
-    //Downvotes the post
+    //Downvote the post
     else if ($(e.target).hasClass("post-downvote")) {
       console.log("Downvote me!")
       chosenAction = "downvote"
-      likes--
     }
 
     //We actually want to update something
@@ -132,6 +130,59 @@ $(document).ready(() => {
 
           //If the post was up/downvoted successfully, we update the DOM with the new value
           if (result.StatusCode == 10) {
+            if (chosenAction == "upvote") {
+              //Remove upvote
+              if ($(e.target).hasClass("voted")) {
+                likes--
+                $(e.target).removeClass("voted")
+              }
+
+              //Remove downvote and add upvote
+              else if (
+                $(e.target)
+                  .siblings(".post-downvote")
+                  .hasClass("voted")
+              ) {
+                likes += 2
+                $(e.target).addClass("voted")
+                $(e.target)
+                  .siblings(".post-downvote")
+                  .removeClass("voted")
+              }
+
+              //Add upvote
+              else {
+                likes++
+                $(e.target).addClass("voted")
+              }
+            } else if (chosenAction == "downvote") {
+              //Remove downvote
+              if ($(e.target).hasClass("voted")) {
+                likes++
+                $(e.target).removeClass("voted")
+              }
+
+              //Remove upvote and add downvote
+              else if (
+                $(e.target)
+                  .siblings(".post-upvote")
+                  .hasClass("voted")
+              ) {
+                likes -= 2
+                $(e.target).addClass("voted")
+                $(e.target)
+                  .siblings(".post-upvote")
+                  .removeClass("voted")
+              }
+
+              //Add upvote
+              else {
+                likes--
+                $(e.target).addClass("voted")
+              }
+            }
+
+            //Changes the like number in the DOM
             $(e.target)
               .siblings(".post-votes")
               .html(likes)

@@ -119,8 +119,7 @@ else if (isset($_POST['action'])) {
         //The id of the user trying to make the changes
         $userId = $_SESSION['userId'];
 
-        $result = $conn->query("SELECT * FROM posts_likes WHERE post_id=$postId AND user_id=$userId") or die($conn->error);
-        if(true) {
+        if($result = $conn->query("SELECT * FROM posts_likes WHERE post_id=$postId AND user_id=$userId") or die($conn->error)) {
              if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     if ($status != $row['status']) { //If the user is switching their previous entry (from upvoted to downvoted and vice versa)
@@ -132,12 +131,21 @@ else if (isset($_POST['action'])) {
                             echo $jsonRes;
                         }
                     }
-                    else { //Trying to up/downvote a post twice, no action taken
-                        $returnObj = new \stdClass();
-                        $returnObj->StatusCode = 11;
-                        $returnObj->ErrorMsg = "can't up/downvote a post twice";
-                        $jsonRes = json_encode($returnObj);
-                        echo $jsonRes;
+                    else { //Remove the up/downvote
+                        if ($res2 = $conn->query("DELETE FROM posts_likes WHERE post_id=$postId AND user_id=$userId")) {
+                            $returnObj = new \stdClass();
+                            $returnObj->StatusCode = 10;
+                            $returnObj->ErrorMsg = "up/downvote removed";
+                            $jsonRes = json_encode($returnObj);
+                            echo $jsonRes;
+                        }
+                        else { //SQL Error
+                            $returnObj = new \stdClass();
+                            $returnObj->StatusCode = 29;
+                            $returnObj->ErrorMsg = "SQL Error";
+                            $jsonRes = json_encode($returnObj);
+                            echo $jsonRes;
+                        }
                     }
                 }
             }
