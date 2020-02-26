@@ -119,7 +119,7 @@ else if (isset($_POST['action'])) {
         //The id of the user trying to make the changes
         $userId = $_SESSION['userId'];
 
-        $result = $conn->query("SELECT * FROM posts_likes WHERE `post_id`=2 AND `user_id`=1") or die($conn->error);
+        $result = $conn->query("SELECT * FROM posts_likes WHERE post_id=$postId AND user_id=$userId") or die($conn->error);
         if(true) {
              if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

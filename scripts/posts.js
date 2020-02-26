@@ -103,13 +103,13 @@ $(document).ready(() => {
     )
 
     //Upvotes the post
-    if ($(e.target).attr("class") == "post-upvote") {
+    if ($(e.target).hasClass("post-upvote")) {
       console.log("Upvote me!")
       chosenAction = "upvote"
       likes++
     }
     //Downvotes the post
-    else if ($(e.target).attr("class") == "post-downvote") {
+    else if ($(e.target).hasClass("post-downvote")) {
       console.log("Downvote me!")
       chosenAction = "downvote"
       likes--

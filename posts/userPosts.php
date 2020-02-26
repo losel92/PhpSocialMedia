@@ -1,7 +1,7 @@
 <!-- This fuction takes all the post info and returns an HTML object -->
 
 <?php
-    function getSinglePost($post_id, $post_un, $post_date, $post_likes, $post_title, $post_content, $edit_date){
+    function getSinglePost($post_id, $post_un, $post_date, $post_likes, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
 ?>
     <div class="userPost" id="post<?php echo $post_id; ?>">
 
@@ -50,8 +50,8 @@
         </div>
         <div class="post-bottom">
             <span class="post-votes"><?php echo $post_likes; ?></span>
-            <div class="post-upvote"></div>
-            <div class="post-downvote"></div>
+            <div class="post-upvote <?php if($upvoted) { echo 'voted'; } ?>"></div>
+            <div class="post-downvote <?php if($downvoted) { echo 'voted'; } ?>"></div>
             <span class="post-date"><?php echo $post_date; ?></span>
         </div>
     </div>
@@ -63,7 +63,6 @@
         require 'includes/dbconnect.inc.php';
         $conn = OpenCon();
 
-
         $sql = "SELECT * FROM user_posts WHERE user_id=$uid ORDER BY post_timestamp DESC";
         if($result = mysqli_query($conn, $sql)){
             //If the user has posted anything // ie. if the query returns any values
@@ -71,6 +70,8 @@
                 while($row = mysqli_fetch_assoc($result)) {
                     $postId = $row['post_id'];
                     $likes = 0;
+                    $userUp = false;
+                    $userDown = false;
 
                     //Get and calculate likes (upvotes and downvotes)
                     $likesSql = "SELECT * FROM posts_likes WHERE post_id=$postId";
@@ -79,12 +80,25 @@
                             while ($likesRow = mysqli_fetch_assoc($likesResult)) {
                                 if ($likesRow['status'] == 1) { $likes++; }
                                 else if ($likesRow['status'] == 0) { $likes--; }
+
+                                //Finds out if the user has up/downvoted the current post
+                                if ($likesRow['user_id'] == $_SESSION['userId']) {
+                                    if ($likesRow['status'] == 0) {
+                                        $userUp = false;
+                                        $userDown = true;
+                                    }
+                                    else if ($likesRow['status'] == 1) {
+                                        $userUp = true;
+                                        $userDown = false;
+                                    }
+                                }
+
                             }
                         }
                     }
 
                     //Get each post individually
-                    getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $likes, $row['head'], $row['content'], $row['edit_timestamp']);
+                    getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $likes, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
                 }
             }
             //If the user hasn't posted anything yet
