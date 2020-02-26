@@ -1,7 +1,7 @@
 <!-- This fuction takes all the post info and returns an HTML object -->
 
 <?php
-    function getSinglePost($post_id, $post_un, $post_date, $post_likes, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
+    function getSinglePost($post_id, $post_un, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
 ?>
     <div class="userPost" id="post<?php echo $post_id; ?>">
 
@@ -40,6 +40,8 @@
         <a class="post-top">
             <div class="post-picture" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div>
             <span class="post-un"><?php echo $post_un; ?></span>
+            <span class="post-comments-count"><?php echo $comment_count; ?></span>
+            <div class="post-comments" onclick="OpenModal('#post-comments-form-popup-contents')"></div>
             <div class="post-settings" onclick="OpenModal('#post-settings-form-popup-contents')"></div>
         </a> 
         <div class="post-contents">
@@ -70,13 +72,14 @@
                 while($row = mysqli_fetch_assoc($result)) {
                     $postId = $row['post_id'];
                     $likes = 0;
+                    $comments = 0;
                     $userUp = false;
                     $userDown = false;
 
                     //Get and calculate likes (upvotes and downvotes)
                     $likesSql = "SELECT * FROM posts_likes WHERE post_id=$postId";
                     if ($likesResult = mysqli_query($conn, $likesSql)) {
-                        if (mysqli_num_rows($likesResult) > 0) {
+                        if (mysqli_num_rows($likesResult)) {
                             while ($likesRow = mysqli_fetch_assoc($likesResult)) {
                                 if ($likesRow['status'] == 1) { $likes++; }
                                 else if ($likesRow['status'] == 0) { $likes--; }
@@ -97,8 +100,17 @@
                         }
                     }
 
+                    //Calculates comments
+                    if ($commentsRes = $conn->query("SELECT * FROM posts_comments WHERE post_id=$postId")) {
+                        if ($commentsRes->num_rows) {
+                            while ($comment_count->fetch_assoc()) {
+                                $comments++;
+                            }
+                        }
+                    }
+
                     //Get each post individually
-                    getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $likes, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
+                    getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $likes, $comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
                 }
             }
             //If the user hasn't posted anything yet
