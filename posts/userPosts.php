@@ -5,7 +5,15 @@
 ?>
     <div class="userPost" id="post<?php echo $post_id; ?>">
 
-        <!-- The post settings popup form -->
+        <!-- Post comments popup section -->
+        <div class="form-wrapper popup-form-wrapper" id="post-comments-form-popup-wrapper">
+            <div class="form-contents popup-form-contents" id="post-comments-form-popup-contents">
+                <span class="closeX" id="post-comments-x" onclick="CloseModal('.form-contents')">&times;</span>
+                <div>heyo</div>
+            </div>
+        </div>
+
+        <!-- Post settings popup form -->
         <div class="form-wrapper popup-form-wrapper" id="post-settings-form-popup-wrapper">
             <div class="form-contents popup-form-contents" id="post-settings-form-popup-contents">
                 <span class="closeX" id="post-settings-x" onclick="CloseModal('.form-contents')">&times;</span>
@@ -14,7 +22,7 @@
             </div>
         </div>
 
-        <!-- The post edit popup form -->
+        <!-- Edit post popup form -->
         <div class="form-wrapper popup-form-wrapper" id="post-edit-form-popup-wrapper">
             <div class="form-contents popup-form-contents" id="post-edit-form-popup-contents">
                 <span class="closeX" id="post-edit-x" onclick="CloseModal('.form-contents')">&times;</span>
@@ -27,7 +35,7 @@
             </div>
         </div>
 
-        <!-- The post delete popup form -->
+        <!-- Delete post popup form -->
         <div class="form-wrapper popup-form-wrapper" id="post-delete-form-popup-wrapper">
             <div class="form-contents popup-form-contents" id="post-delete-form-popup-contents">
                 <span class="closeX" id="post-delete-x" onclick="CloseModal('.form-contents')">&times;</span>
@@ -37,6 +45,7 @@
             </div>
         </div>
 
+        <!-- Actual post -->
         <a class="post-top">
             <div class="post-picture" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div>
             <span class="post-un"><?php echo $post_un; ?></span>

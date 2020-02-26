@@ -743,11 +743,20 @@ button {
   border-radius: 7px;
 }
 
-#post-settings-form-popup-contents {
-  width: 500px;
+#post-comments-form-popup-contents {
+  min-width: 400px;
+  width: 70%;
   margin-top: 200px;
 }
-#post-settings-x {
+
+#post-settings-form-popup-contents {
+  min-width: 300px;
+  max-width: 500px;
+  width: 40%;
+  margin-top: 200px;
+}
+#post-settings-x,
+#post-comments-x {
   font-size: 38px;
   margin-top: -15px;
   margin-right: -30px;
