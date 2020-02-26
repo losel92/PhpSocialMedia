@@ -36,10 +36,13 @@ CREATE TABLE `user_posts` (
 --
 
 CREATE TABLE posts_likes (
+    like_id int(11) NOT NULL AUTO_INCREMENT,
     user_id int(11),
     post_id int(11),
     status int(5),
-    PRIMARY KEY (user_id, post_id)
+    PRIMARY KEY (like_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (post_id) REFERENCES user_posts(post_id)
 )
 
 --
@@ -47,8 +50,27 @@ CREATE TABLE posts_likes (
 --
 
 CREATE TABLE posts_comments (
+    comment_id int(11) NOT NULL AUTO_INCREMENT,
     user_id int(11),
     post_id int(11),
     body varchar(1000),
-    PRIMARY KEY (user_id, post_id)
+    PRIMARY KEY (comment_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (post_id) REFERENCES user_posts(post_id)
+)
+
+--
+-- Table structure for table `posts_comments`
+--
+
+CREATE TABLE comments_likes (
+    like_id int(11) NOT NULL AUTO_INCREMENT,
+    comment_id int(11),
+    user_id int(11),
+    post_id int(11),
+    body varchar(1000),
+    PRIMARY KEY (like_id),
+    FOREIGN KEY (comment_id) REFERENCES posts_comments(comment_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (post_id) REFERENCES user_posts(post_id)
 )

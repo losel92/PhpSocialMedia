@@ -28,14 +28,14 @@
         }
         else{
             //inserts the data into the database
-            $sql = "INSERT INTO user_posts (user_id, username, post_timestamp, likes, head, content, edit_timestamp) VALUES (?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO user_posts (user_id, username, post_timestamp, head, content, edit_timestamp) VALUES (?,?,?,?,?,?)";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
                 $error = 'sqlError';
                 $postId ='';
             }
             else{
-                mysqli_stmt_bind_param($stmt, "isiissi", $userId, $username, $timestamp, $likes, $postHead, $postContent, $edit_timestamp);
+                mysqli_stmt_bind_param($stmt, "isissi", $userId, $username, $timestamp, $postHead, $postContent, $edit_timestamp);
                 mysqli_stmt_execute($stmt);
                 
                 
@@ -88,8 +88,8 @@
         $('.post-creator-head, .post-creator-content').css('border', '2px solid #3d3d3d');
         $('.post-creator-head, .post-creator-content').val('');
 
-        //Shows the post
-        $(".profile-post-creator-wrapper").after(`<?php echo getSinglePost($postId, $_SESSION["username"], date('d/m/Y',$timestamp), $likes, htmlspecialchars(addslashes($postHead)), htmlspecialchars($postContent), date('d/m/Y', $timestamp)); ?>`)
+        //Shows the post                                                          $post_id, $post_un, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted
+        $(".profile-post-creator-wrapper").after(`<?php echo getSinglePost($postId, $_SESSION["username"], date('d/m/Y',$timestamp), 0, 0, htmlspecialchars(addslashes($postHead)), htmlspecialchars($postContent), date('d/m/Y', $timestamp), false, false); ?>`)
         $('#post<?php echo $postId ?>').hide().delay(200).fadeIn(500);
     }
     
