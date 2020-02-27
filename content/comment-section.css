@@ -1,0 +1,40 @@
+.post-comments-form-popup-contents {
+  border-radius: 7px;
+  background-color: gray;
+  min-width: 400px;
+  width: 70%;
+  margin-top: 200px;
+}
+
+.comments-modal-content {
+  text-align: left;
+  margin: 5px;
+}
+
+.post-comment-top,
+.post-comment-top-left,
+.post-comment-top-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 49px;
+  align-items: center;
+}
+
+.post-comment-un {
+  margin: 5px 0px;
+}
+
+.post-comment-date {
+  margin: 5px 3px;
+  height: 21px;
+  padding: 10px 5px;
+}
+
+.post-comment-contents {
+  background-color: #ccc;
+  margin: 5px 0px;
+  padding: 0px 10px;
+  border: 2px solid #3d3d3d;
+  border-radius: 10px;
+}

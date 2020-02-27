@@ -386,7 +386,7 @@ button {
 #profile-edit-logo {
   height: 50px;
   width: 50px;
-  background: url("images/edit-logo.png");
+  background: url("../images/edit-logo.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto 50px;
@@ -633,7 +633,7 @@ button {
   right: 70px;
 
   filter: opacity(0.7);
-  background: url(./images/comment.png);
+  background: url(../images/comment.png);
   background-color: #aaa;
   background-repeat: no-repeat;
   background-position: center;
@@ -649,7 +649,7 @@ button {
   right: 22px;
 
   filter: opacity(0.7);
-  background: url(./images/settings.png);
+  background: url(../images/settings.png);
   background-color: #aaa;
   background-repeat: no-repeat;
   background-position: center;
@@ -696,7 +696,7 @@ button {
 
   filter: opacity(0.7);
   background-color: #aaa;
-  background-image: url(images/upvote.png);
+  background-image: url(../images/upvote.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
@@ -716,7 +716,7 @@ button {
 
   filter: opacity(0.7);
   background-color: #aaa;
-  background-image: url(images/upvote.png);
+  background-image: url(../images/upvote.png);
   transform: rotate(180deg);
   background-repeat: no-repeat;
   background-position: center;
@@ -731,7 +731,7 @@ button {
 }
 
 .voted {
-  background-image: url(./images/upvote-red.png) !important;
+  background-image: url(../images/upvote-red.png) !important;
 }
 
 .post-date {
@@ -743,13 +743,7 @@ button {
   border-radius: 7px;
 }
 
-#post-comments-form-popup-contents {
-  min-width: 400px;
-  width: 70%;
-  margin-top: 200px;
-}
-
-#post-settings-form-popup-contents {
+.post-settings-form-popup-contents {
   min-width: 300px;
   max-width: 500px;
   width: 40%;
@@ -772,7 +766,7 @@ button {
   cursor: pointer;
 }
 
-#post-edit-form-popup-contents {
+.post-edit-form-popup-contents {
   width: 700px;
   margin-top: 200px;
   padding: 10px;
@@ -817,7 +811,7 @@ button {
   color: #000;
 }
 
-#post-delete-form-popup-contents {
+.post-delete-form-popup-contents {
   width: 700px;
   margin-top: 200px;
   padding: 10px;
@@ -826,12 +820,7 @@ button {
   font-family: "Calibri";
   font-size: 28px;
 }
-#post-delete-x {
-  font-size: 38px;
-  margin-top: -10px;
-  margin-right: -10px;
-}
-#post-delete-form-popup-contents div {
+.post-delete-form-popup-contents div {
   display: inline-flex;
   margin: 5px;
   border: 2px solid #3d3d3d;
@@ -842,10 +831,15 @@ button {
   color: #3d3d3d;
   font-weight: bold;
 }
-#post-delete-form-popup-contents div:hover {
+.post-delete-form-popup-contents div:hover {
   cursor: pointer;
   color: #000;
   background-color: #8e8e8e;
+}
+#post-delete-x {
+  font-size: 38px;
+  margin-top: -10px;
+  margin-right: -10px;
 }
 
 /* <-- SINGLE POST */
