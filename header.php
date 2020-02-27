@@ -10,7 +10,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="AdditionalStuff/jquery.Jcrop.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="./content/style.css">
+	<link rel="stylesheet" type="text/css" href="./content/comment-section.css">
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 

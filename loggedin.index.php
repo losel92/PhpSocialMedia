@@ -95,10 +95,6 @@
 		</div>
 
 		<?php 
-			//Opens a connection to the database
-			//require 'includes/dbconnect.inc.php';
-			//$conn = OpenCon();
-
 			require './posts/userPosts.php';
 
 			?> <script type="text/javascript" src="./scripts/posts.js"></script> <?php //Includes the js needed for handling posts

@@ -1,30 +1,34 @@
 <!-- This fuction takes all the post info and returns an HTML object -->
 
 <?php
+    require 'postComments.php';
+
     function getSinglePost($post_id, $post_un, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
 ?>
     <div class="userPost" id="post<?php echo $post_id; ?>">
 
         <!-- Post comments popup section -->
-        <div class="form-wrapper popup-form-wrapper" id="post-comments-form-popup-wrapper">
-            <div class="form-contents popup-form-contents" id="post-comments-form-popup-contents">
+        <div class="form-wrapper popup-form-wrapper">
+            <div class="form-contents popup-form-contents post-comments-form-popup-contents" id="post<?php echo $post_id; ?>-comment-form">
                 <span class="closeX" id="post-comments-x" onclick="CloseModal('.form-contents')">&times;</span>
-                <div>heyo</div>
+                <div class="comments-modal-content">
+                    <?php get_comment_section($post_id, $_SESSION['userId'], $post_un, $post_likes, $upvoted, $downvoted); ?>
+                </div>
             </div>
         </div>
 
         <!-- Post settings popup form -->
-        <div class="form-wrapper popup-form-wrapper" id="post-settings-form-popup-wrapper">
-            <div class="form-contents popup-form-contents" id="post-settings-form-popup-contents">
+        <div class="form-wrapper popup-form-wrapper">
+            <div class="form-contents popup-form-contents post-settings-form-popup-contents" id="post<?php echo $post_id; ?>-settings-form-popup-contents">
                 <span class="closeX" id="post-settings-x" onclick="CloseModal('.form-contents')">&times;</span>
-                <div class="post-settings-sec post-settings-edit" onclick="CloseModal('.form-contents');OpenModal('#post-edit-form-popup-contents');postEditPopUp();">Edit</div>
-                <div class="post-settings-sec post-settings-del" onclick="CloseModal('.form-contents');OpenModal('#post-delete-form-popup-contents')">Delete</div>
+                <div class="post-settings-sec post-settings-edit" onclick="CloseModal('.form-contents');OpenModal('#post<?php echo $post_id; ?>-edit-form-popup-contents');postEditPopUp();">Edit</div>
+                <div class="post-settings-sec post-settings-del" onclick="CloseModal('.form-contents');OpenModal('#post<?php echo $post_id; ?>-delete-form-popup-contents')">Delete</div>
             </div>
         </div>
 
         <!-- Edit post popup form -->
-        <div class="form-wrapper popup-form-wrapper" id="post-edit-form-popup-wrapper">
-            <div class="form-contents popup-form-contents" id="post-edit-form-popup-contents">
+        <div class="form-wrapper popup-form-wrapper">
+            <div class="form-contents popup-form-contents post-edit-form-popup-contents" id="post<?php echo $post_id; ?>-edit-form-popup-contents">
                 <span class="closeX" id="post-edit-x" onclick="CloseModal('.form-contents')">&times;</span>
                 <div id="post-edit-form">
                     <input type="text" id="post-edit-headline">
@@ -36,8 +40,8 @@
         </div>
 
         <!-- Delete post popup form -->
-        <div class="form-wrapper popup-form-wrapper" id="post-delete-form-popup-wrapper">
-            <div class="form-contents popup-form-contents" id="post-delete-form-popup-contents">
+        <div class="form-wrapper popup-form-wrapper">
+            <div class="form-contents popup-form-contents post-delete-form-popup-contents" id="post<?php echo $post_id; ?>-delete-form-popup-contents">
                 <span class="closeX" id="post-delete-x" onclick="CloseModal('.form-contents')">&times;</span>
                 <p class="post-delete-txt">Are you sure you want to delete this post? There is no coming back</p>
                 <div class="post-delete-sec post-delete-yes" onclick="deletePost();">Yes</div>
@@ -50,8 +54,8 @@
             <div class="post-picture" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div>
             <span class="post-un"><?php echo $post_un; ?></span>
             <span class="post-comments-count"><?php echo $comment_count; ?></span>
-            <div class="post-comments" onclick="OpenModal('#post-comments-form-popup-contents')"></div>
-            <div class="post-settings" onclick="OpenModal('#post-settings-form-popup-contents')"></div>
+            <div class="post-comments" onclick="OpenModal('#post<?php echo $post_id; ?>-comment-form')"></div>
+            <div class="post-settings" onclick="OpenModal('#post<?php echo $post_id; ?>-settings-form-popup-contents')"></div>
         </a> 
         <div class="post-contents">
             <h2 class="post-headline"><?php echo htmlspecialchars($post_title); ?></h2>
