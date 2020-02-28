@@ -5,7 +5,7 @@
 
     function getSinglePost($post_id, $post_un, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
 ?>
-    <div class="userPost" id="post<?php echo $post_id; ?>">
+    <div class="userPost postid-<?php echo $post_id; ?>" id="post<?php echo $post_id; ?>" postId="<?php echo $post_id; ?>">
 
         <!-- Post comments popup section -->
         <div class="form-wrapper popup-form-wrapper">

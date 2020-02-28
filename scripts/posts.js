@@ -89,9 +89,7 @@ $(document).ready(() => {
   var clickedPostID
   //Strores the id of the last clicked post
   $(document).on("click", ".userPost", function(e) {
-    clickedPostID = $(this)
-      .attr("id")
-      .substr(4)
+    clickedPostID = $(this).attr("postId")
     console.log(clickedPostID)
     lastClickedPost = "post" + clickedPostID
 
@@ -113,6 +111,10 @@ $(document).ready(() => {
       chosenAction = "downvote"
     }
 
+    console.log({
+      action: chosenAction,
+      postId: clickedPostID
+    })
     //We actually want to update something
     if (chosenAction != "") {
       //Calls the php file that updates the database
@@ -128,13 +130,15 @@ $(document).ready(() => {
 
           result = JSON.parse(data)
 
+          const upToChange = `.postid-${clickedPostID} .post-upvote`
+          const downToChange = `.postid-${clickedPostID} .post-downvote`
           //If the post was up/downvoted successfully, we update the DOM with the new value
           if (result.StatusCode == 10) {
             if (chosenAction == "upvote") {
               //Remove upvote
               if ($(e.target).hasClass("voted")) {
                 likes--
-                $(e.target).removeClass("voted")
+                $(upToChange).removeClass("voted")
               }
 
               //Remove downvote and add upvote
@@ -144,22 +148,20 @@ $(document).ready(() => {
                   .hasClass("voted")
               ) {
                 likes += 2
-                $(e.target).addClass("voted")
-                $(e.target)
-                  .siblings(".post-downvote")
-                  .removeClass("voted")
+                $(upToChange).addClass("voted")
+                $(downToChange).removeClass("voted")
               }
 
               //Add upvote
               else {
                 likes++
-                $(e.target).addClass("voted")
+                $(upToChange).addClass("voted")
               }
             } else if (chosenAction == "downvote") {
               //Remove downvote
               if ($(e.target).hasClass("voted")) {
                 likes++
-                $(e.target).removeClass("voted")
+                $(downToChange).removeClass("voted")
               }
 
               //Remove upvote and add downvote
@@ -169,21 +171,19 @@ $(document).ready(() => {
                   .hasClass("voted")
               ) {
                 likes -= 2
-                $(e.target).addClass("voted")
-                $(e.target)
-                  .siblings(".post-upvote")
-                  .removeClass("voted")
+                $(downToChange).addClass("voted")
+                $(upToChange).removeClass("voted")
               }
 
-              //Add upvote
+              //Add downvote
               else {
                 likes--
-                $(e.target).addClass("voted")
+                $(downToChange).addClass("voted")
               }
             }
 
             //Changes the like number in the DOM
-            $(e.target)
+            $(upToChange)
               .siblings(".post-votes")
               .html(likes)
           } else {

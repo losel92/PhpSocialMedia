@@ -27,6 +27,7 @@ function get_comment_section ($post_id, $user_id, $post_un, $post_likes, $upvote
         return;
     }
 ?>
+<div class="postComment postid-<?php echo $post_id; ?>" postId="<?php echo $post_id; ?>">
     <a class="post-comment-top">
         <div class="post-comment-top-left">
             <div class="post-picture post-comment-picture" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div>
@@ -45,6 +46,7 @@ function get_comment_section ($post_id, $user_id, $post_un, $post_likes, $upvote
             <?php echo htmlspecialchars($post_content); ?>
         </h3>
     </div>
+</div>
 <?php
 }
 

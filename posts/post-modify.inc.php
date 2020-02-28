@@ -135,7 +135,7 @@ else if (isset($_POST['action'])) {
                         if ($res2 = $conn->query("DELETE FROM posts_likes WHERE post_id=$postId AND user_id=$userId")) {
                             $returnObj = new \stdClass();
                             $returnObj->StatusCode = 10;
-                            $returnObj->ErrorMsg = "up/downvote removed";
+                            $returnObj->Content = "up/downvote removed";
                             $jsonRes = json_encode($returnObj);
                             echo $jsonRes;
                         }
@@ -150,7 +150,7 @@ else if (isset($_POST['action'])) {
                 }
             }
             else { //No action taken before, add new entry to table
-                if ($result = $conn->query("INSERT INTO posts_likes VALUES ($userId, $postId, $status)")) {
+                if ($result = $conn->query("INSERT INTO posts_likes (user_id, post_id, status) VALUES ($userId, $postId, $status)")) {
                     $returnObj = new \stdClass();
                     $returnObj->StatusCode = 10;
                     $returnObj->Content = "up/downvote added to post $postId";
