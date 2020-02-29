@@ -1,4 +1,11 @@
-<?php session_start(); //Starts the session if a user is logged in ?>
+<?php 
+
+//Starts the session if a user is logged in
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +40,7 @@
 			<ul class="header-ul">
 				<li id="header-profile"><a href="index.php">Profile</a></li>
 				<li id="header-feed"><a href="#">Feed</a></li>
-				<li id="header-search"><a href="#">Search</a></li>
+				<li id="header-search"><a href="loggedin.searchResults.php">Search</a></li>
 			</ul>
 
 

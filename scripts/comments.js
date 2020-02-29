@@ -75,6 +75,12 @@ $(document).ready(() => {
           .find(".post-comments-comments")
 
         if (res) {
+          //Clears the comment textarea
+          $(e.target)
+            .parents(".make-comment-section")
+            .find(".make-comment-textarea")
+            .val("")
+
           //Inserts the new comment into the DOM
           $(commentSection).show()
           $(commentSection).prepend(res)
