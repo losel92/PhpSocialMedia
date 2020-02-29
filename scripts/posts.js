@@ -1,6 +1,7 @@
 /// Functions and handlers for creating, deleting and updating existing posts
 
-var lastClickedPost
+let lastClickedPost
+let clickedPostID
 //Post editing popup form
 function postEditPopUp() {
   console.log("edit " + lastClickedPost)
@@ -47,7 +48,7 @@ function editPost() {
 
 //Post Delete
 function deletePost() {
-  var theId = lastClickedPost
+  var theId = clickedPostID
 
   //Sends an ajax request to post-modify.inc.php
   $.ajax({
@@ -86,7 +87,6 @@ $(document).ready(() => {
     })
   })
 
-  var clickedPostID
   //Strores the id of the last clicked post
   $(document).on("click", ".userPost", function(e) {
     clickedPostID = $(this).attr("postId")
