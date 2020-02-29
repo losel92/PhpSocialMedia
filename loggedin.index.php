@@ -4,7 +4,7 @@
 		<form class="form-popup" id="select-pic-form" method="post" action="" enctype="multipart/form-data">
 		    <span class="closeX" id="pic-form-x" onclick="CloseModal('.form-contents')">&times;</span>
 		    <h1>Upload a new profile picture!</h1>
-		    <input type="file" name="imgfile" id="imgfile" />
+		    <input type="file" name="imgfile" id="imgfile" accept="image/x-png,image/gif,image/jpeg" />
 		    <label for="imgfile">Choose a file</label>
 			<input type="button" name="upload" value="UPLOAD" id="profile-pic-upload-btn" class="btn">
 		</form>

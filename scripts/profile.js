@@ -91,37 +91,40 @@ $(document).ready(function() {
 
     var files = $("#imgfile")[0].files[0]
 
-    fd.append("file", files)
+    //Will only execute if the user has chosen a file
+    if (files) {
+      fd.append("file", files)
 
-    $.ajax({
-      //Ajax request
-      url: "./imgUpload.php",
-      type: "post",
-      data: fd,
-      contentType: false,
-      processData: false,
-      success: function(response) {
-        if (response != 0) {
-          //If the upload was successful, it will
-          //assign the src of the new img to the DOM element and properly downsize it
-          //Also, makes a cool animation ;D
-          jcrop_api.destroy()
-          $("#img-crop-btn").fadeOut()
-          $(".img-preview").slideUp(1000)
+      $.ajax({
+        //Ajax request
+        url: "./imgUpload.php",
+        type: "post",
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          if (response != 0) {
+            //If the upload was successful, it will
+            //assign the src of the new img to the DOM element and properly downsize it
+            //Also, makes a cool animation ;D
+            jcrop_api.destroy()
+            $("#img-crop-btn").fadeOut()
+            $(".img-preview").slideUp(1000)
 
-          setTimeout(function() {
-            $("#img-crop-prev").remove()
-            $(".img-preview").append(
-              "<img src='" + response + "' id='img-crop-prev'>"
-            )
-            ApplyCrop("#img-crop-prev", 600)
-            $(".img-preview").css("display", "block")
-          }, 1500)
-        } else {
-          alert("File not uploaded")
+            setTimeout(function() {
+              $("#img-crop-prev").remove()
+              $(".img-preview").append(
+                "<img src='" + response + "' id='img-crop-prev'>"
+              )
+              ApplyCrop("#img-crop-prev", 600)
+              $(".img-preview").css("display", "block")
+            }, 1500)
+          } else {
+            alert("File not uploaded")
+          }
         }
-      }
-    })
+      })
+    }
   })
 
   //Makes the img "croppable"
