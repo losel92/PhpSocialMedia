@@ -28,7 +28,8 @@ CREATE TABLE `user_posts` (
   `post_timestamp` int(11) DEFAULT NULL,
   `head` varchar(64) DEFAULT NULL,
   `content` varchar(12000) DEFAULT NULL,
-  `edit_timestamp` int(11) DEFAULT NULL
+  `edit_timestamp` int(11) DEFAULT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 )
 
 --
@@ -41,8 +42,8 @@ CREATE TABLE posts_likes (
     post_id int(11),
     status int(5),
     PRIMARY KEY (like_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (post_id) REFERENCES user_posts(post_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES user_posts(post_id) ON DELETE CASCADE
 )
 
 --
@@ -54,9 +55,10 @@ CREATE TABLE posts_comments (
     user_id int(11),
     post_id int(11),
     body varchar(1000),
+    comment_timestamp int(11) DEFAULT NULL,
     PRIMARY KEY (comment_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (post_id) REFERENCES user_posts(post_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES user_posts(post_id) ON DELETE CASCADE
 )
 
 --
@@ -65,12 +67,10 @@ CREATE TABLE posts_comments (
 
 CREATE TABLE comments_likes (
     like_id int(11) NOT NULL AUTO_INCREMENT,
-    comment_id int(11),
-    user_id int(11),
-    post_id int(11),
-    body varchar(1000),
+    comment_id int(11) NOT NULL,
+    user_id int(11) NOT NULL,
+    status int(1),
     PRIMARY KEY (like_id),
-    FOREIGN KEY (comment_id) REFERENCES posts_comments(comment_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (post_id) REFERENCES user_posts(post_id)
+    FOREIGN KEY (comment_id) REFERENCES posts_comments(comment_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 )
