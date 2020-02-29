@@ -3,7 +3,7 @@
   background-color: gray;
   min-width: 400px;
   width: 70%;
-  margin-top: 200px;
+  margin: 50px auto;
 }
 
 .comments-modal-content {
@@ -66,4 +66,12 @@
   border-color: #000;
   background-color: #ccc;
   color: red;
+}
+
+.post-comments-comments {
+  margin-top: 20px;
+}
+
+.single-comment {
+  margin: 15px 0px;
 }

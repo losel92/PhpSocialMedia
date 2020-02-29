@@ -678,7 +678,8 @@ button {
 }
 
 .post-votes,
-.post-comments-count {
+.post-comments-count,
+.comment-votes {
   font-size: 30px;
   font-family: "calibri";
   font-weight: bold;
@@ -689,7 +690,8 @@ button {
   right: 115px;
 }
 
-.post-upvote {
+.post-upvote,
+.comment-upvote {
   height: 40px;
   width: 40px;
   margin: 2px;
@@ -703,13 +705,15 @@ button {
   border: 2px solid #000;
   border-radius: 7px;
 }
-.post-upvote:hover {
+.post-upvote:hover,
+.comment-upvote:hover {
   cursor: pointer;
   filter: opacity(1);
   background-size: 25px;
 }
 
-.post-downvote {
+.post-downvote,
+.comment-downvote {
   height: 40px;
   width: 40px;
   margin: 2px;
@@ -724,7 +728,8 @@ button {
   border: 2px solid #000;
   border-radius: 7px;
 }
-.post-downvote:hover {
+.post-downvote:hover,
+.comment-downvote:hover {
   cursor: pointer;
   filter: opacity(1);
   background-size: 25px;
