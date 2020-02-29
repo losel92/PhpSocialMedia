@@ -97,7 +97,13 @@
 		<?php 
 			require './posts/userPosts.php';
 
-			?> <script type="text/javascript" src="./scripts/posts.js"></script> <?php //Includes the js needed for handling posts
+			?> 
+				<!-- Includes the js needed for handling posts -->
+				<script type="text/javascript" src="./scripts/posts.js"></script> 
+		
+				<!-- Js for comments -->
+				<script type="text/javascript" src="./scripts/comments.js"></script> 
+			<?php
 			getAllPostsForSingleUser($_SESSION['userId']);
 		?>
 	</div>

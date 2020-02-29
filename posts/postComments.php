@@ -47,6 +47,14 @@ function get_comment_section ($post_id, $user_id, $post_un, $post_likes, $upvote
         </h3>
     </div>
 </div>
+<div class="make-comment-section">
+    <div class="make-comment-textarea-wrapper">
+        <textarea class="make-comment-textarea" placeholder="Write a new comment..."></textarea>
+    </div>
+    <div style="text-align: right">
+        <button class="submit-comment-btn" style="display: none">Submit!</button>
+    </div>
+</div>
 <?php
 }
 
