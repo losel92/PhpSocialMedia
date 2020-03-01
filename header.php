@@ -39,7 +39,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 			<ul class="header-ul">
 				<li id="header-profile"><a href="index.php">Profile</a></li>
-				<li id="header-feed"><a href="#">Feed</a></li>
+				<li id="header-feed"><a href="">Feed</a></li>
 				<li id="header-search"><a href="loggedin.searchResults.php">Search</a></li>
 			</ul>
 
@@ -64,9 +64,9 @@ if (session_status() == PHP_SESSION_NONE) {
 				<?php } else{ //if there is a user logged in ?>
 
 					<!-- Username besides little pic at the top -->
-					<a href="#"><div id="un-top-right"><?php echo $_SESSION['username']; ?></div></a>
+					<a href="index.php"><div id="un-top-right"><?php echo $_SESSION['username']; ?></div></a>
 					<!-- Little pic at the top right -->
-					<a href="#"><div id="pic-top-right" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div></a>
+					<a href="index.php"><div id="pic-top-right" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div></a>
 
 					<form action="includes/logout.inc.php" method="post">
 						<button type="submit" name="logout-submit" class="btn">LOGOUT</button>
