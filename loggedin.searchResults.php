@@ -11,6 +11,7 @@ if (isset($_SESSION['userId'])) {
     ?>
 
     <link rel="stylesheet" type="text/css" href="content/search.css">
+    <script type="text/javascript" src="scripts/posts.js"></script>
 
     <main style="min-height: 91.4vh;">
         <script type="text/javascript" src="scripts/search.js"></script>
