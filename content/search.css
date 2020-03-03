@@ -65,3 +65,74 @@ main {
   width: 70%;
   min-width: 500px;
 }
+
+.single-user-profile-short {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  margin: 10px 0px;
+  font-weight: bold;
+}
+
+.user-profile-short-pic {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #3d3d3d;
+  border-radius: 5px;
+}
+
+.user-profile-short-pic:hover {
+  filter: contrast(1.5);
+  filter: saturate(1.5);
+}
+
+.user-profile-short-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  margin: 0px 3px;
+}
+
+.user-profile-info-top,
+.user-profile-info-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-profile-info-top *,
+.user-profile-info-bottom * {
+  margin: 0px 2px;
+  font-size: 25px;
+}
+
+.user-profile-info-top span,
+.user-profile-info-bottom span,
+.user-profile-info-top button,
+.user-profile-info-bottom button {
+  background-color: #ccc;
+  border-radius: 5px;
+  padding: 0px 3px;
+  border: 2px solid #3d3d3d;
+}
+
+.user-profile-info-gender {
+  color: red;
+}
+
+.user-profile-follow-btn {
+  padding: 0px 5px !important;
+  background-image: url(../images/plus.png);
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: center;
+  width: 35px;
+}
+
+.user-profile-follow-btn:hover {
+  background-image: url(../images/plus-red.png);
+}
