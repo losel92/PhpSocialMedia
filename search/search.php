@@ -85,7 +85,35 @@ if (isset($_POST['action'])) {
             if ($res = $conn->query("SELECT * FROM users WHERE username LIKE '%$searchTxt%' OR first_name LIKE '%$searchTxt%' OR last_name LIKE '%$searchTxt%'")) {
                 if ($res->num_rows) {
                     while ($row = $res->fetch_assoc()) {
-                        echo "{$row['username']} <br> {$row['first_name']} <br> {$row['last_name']}";
+
+                        if($row['gender'] == "male") {
+                            $gender = 'M';
+                        } else if($row['gender'] == "female") {
+                            $gender = 'F';
+                        }
+                        else {
+                            $gender = 'U';
+                        }
+
+                        ?>
+
+                        <div class="single-user-profile-short">
+                            <a href="#"><div class="user-profile-short-pic" style="background-image: url(<?php echo $row['cropped_picture']; ?>)"></div></a>
+                            <div class="user-profile-short-info">
+                                <div class="user-profile-info-top">
+                                    <a href="#"><span class="user-profile-info-un custom-btn"><?php echo $row['username']; ?></span></a>
+                                    <span class="user-profile-info-age"><?php echo $row['age']; ?></span>
+                                    <span class="user-profile-info-gender"><?php echo $gender; ?></span>
+                                    <button class="user-profile-follow-btn custom-btn"></button>
+                                </div>
+                                <div class="user-profile-info-bottom">
+                                    <span class="user-profile-info-fn"><?php echo $row['first_name']; ?></span>
+                                    <span class="user-profile-info-ln"><?php echo $row['last_name']; ?></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
                     }
                 }
             }

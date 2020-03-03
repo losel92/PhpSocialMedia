@@ -60,16 +60,21 @@ main {
   cursor: pointer;
 }
 
-.search-result-posts {
+.search-result-posts,
+.search-result-users-container {
   margin: auto;
   width: 70%;
   min-width: 500px;
 }
 
+.search-result-users {
+  display: inline-block;
+}
+
 .single-user-profile-short {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
 
   margin: 10px 0px;
   font-weight: bold;

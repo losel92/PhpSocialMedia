@@ -29,7 +29,9 @@ if (isset($_SESSION['userId'])) {
                 <button id="search-users-btn" class="custom-btn">Users</button>
             </div>
             <div class="search-result-posts"></div>
-            <div class="search-result-users" style="display: none"></div>
+            <div class="search-result-users-container">
+                <div class="search-result-users" style="display: none"></div>
+            </div>
         </div>
     </main>
     
