@@ -1,7 +1,7 @@
 <!-- This fuction takes all the post info and returns an HTML object -->
 
 <?php
-    function getSinglePost($post_id, $post_un, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
+    function getSinglePost($post_id, $post_un, $post_pic, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
 ?>
     <div class="userPost postid-<?php echo $post_id; ?>" id="post<?php echo $post_id; ?>" postId="<?php echo $post_id; ?>">
 
@@ -10,7 +10,7 @@
             <div class="form-contents popup-form-contents post-comments-form-popup-contents" id="post<?php echo $post_id; ?>-comment-form">
                 <span class="closeX" id="post-comments-x" onclick="CloseModal('.form-contents')">&times;</span>
                 <div class="comments-modal-content">
-                    <?php get_comment_section($post_id, $_SESSION['userId'], $post_un, $post_likes, $upvoted, $downvoted); ?>
+                    <?php get_comment_section($post_id, $_SESSION['userId'], $post_un, $post_pic, $post_likes, $upvoted, $downvoted); ?>
                 </div>
             </div>
         </div>
@@ -49,11 +49,15 @@
 
         <!-- Actual post -->
         <a class="post-top">
-            <div class="post-picture" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div>
-            <span class="post-un"><?php echo $post_un; ?></span>
-            <span class="post-comments-count"><?php echo $comment_count; ?></span>
-            <div class="post-comments" onclick="OpenModal('#post<?php echo $post_id; ?>-comment-form')"></div>
-            <div class="post-settings" onclick="OpenModal('#post<?php echo $post_id; ?>-settings-form-popup-contents')"></div>
+            <div style="display: flex;">
+                <div class="post-picture" style="background-image: url(<?php echo $post_pic; ?>);"></div>
+                <span class="post-un"><?php echo $post_un; ?></span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <span class="post-comments-count"><?php echo $comment_count; ?></span>
+                <div class="post-comments" onclick="OpenModal('#post<?php echo $post_id; ?>-comment-form')"></div>
+                <div class="post-settings" onclick="OpenModal('#post<?php echo $post_id; ?>-settings-form-popup-contents')"></div>
+            </div>
         </a> 
         <div class="post-contents">
             <h2 class="post-headline"><?php echo htmlspecialchars($post_title); ?></h2>
@@ -120,8 +124,16 @@
                         }
                     }
 
-                    //Get each post individually
-                    getSinglePost($row['post_id'] ,$row['username'], date('d/m/Y',$row['post_timestamp']), $likes, $comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
+                    //Gets username and profile pic
+                    if ($usersRes = $conn->query("SELECT username, cropped_picture FROM users WHERE user_id = {$row['user_id']}")) {
+                        if ($usersRes->num_rows) {
+                            while ($userRow = $usersRes->fetch_assoc()) {
+                                //Get each post individually
+                                getSinglePost($row['post_id'] ,$userRow['username'], $userRow['cropped_picture'], date('d/m/Y',$row['post_timestamp']), $likes, $comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
+                            }
+                        }
+                    }
+                    
                 }
             }
             //If the user hasn't posted anything yet
@@ -138,7 +150,7 @@
         $conn->close();
     }
 
-    function get_comment_section ($post_id, $user_id, $post_un, $post_likes, $upvoted, $downvoted) {
+    function get_comment_section ($post_id, $user_id, $post_un, $post_pic, $post_likes, $upvoted, $downvoted) {
         //Opens a connection to the database
         $conn = OpenCon();
     
@@ -165,34 +177,34 @@
             return;
         }
     ?>
-    <div class="postComment postid-<?php echo $post_id; ?>" postId="<?php echo $post_id; ?>">
-        <a class="post-comment-top">
-            <div class="post-comment-top-left">
-                <div class="post-picture post-comment-picture" style="background-image: url(<?php echo $_SESSION['croppedPic']; ?>);"></div>
-                <span class="post-un post-comment-un"><?php echo $post_un; ?></span>
+        <div class="postComment postid-<?php echo $post_id; ?>" postId="<?php echo $post_id; ?>">
+            <a class="post-comment-top">
+                <div class="post-comment-top-left">
+                    <div class="post-picture post-comment-picture" style="background-image: url(<?php echo $post_pic; ?>);"></div>
+                    <span class="post-un post-comment-un"><?php echo $post_un; ?></span>
+                </div>
+                <div class="post-comment-top-right">
+                    <span class="post-votes"><?php echo $post_likes; ?></span>
+                    <div class="post-upvote <?php if($upvoted) { echo 'voted'; } ?>"></div>
+                    <div class="post-downvote <?php if($downvoted) { echo 'voted'; } ?>"></div>
+                    <span class="post-date post-comment-date"><?php echo $post_date; ?></span>
+                </div>
+            </a> 
+            <div class="post-comment-contents">
+                <h2 class="post-comment-headline"><?php echo htmlspecialchars($post_title); ?></h2>
+                <h3 class="post-comment-text">
+                    <?php echo htmlspecialchars($post_content); ?>
+                </h3>
             </div>
-            <div class="post-comment-top-right">
-                <span class="post-votes"><?php echo $post_likes; ?></span>
-                <div class="post-upvote <?php if($upvoted) { echo 'voted'; } ?>"></div>
-                <div class="post-downvote <?php if($downvoted) { echo 'voted'; } ?>"></div>
-                <span class="post-date post-comment-date"><?php echo $post_date; ?></span>
+        </div>
+        <div class="make-comment-section">
+            <div class="make-comment-textarea-wrapper">
+                <textarea class="make-comment-textarea" placeholder="Write a new comment..."></textarea>
             </div>
-        </a> 
-        <div class="post-comment-contents">
-            <h2 class="post-comment-headline"><?php echo htmlspecialchars($post_title); ?></h2>
-            <h3 class="post-comment-text">
-                <?php echo htmlspecialchars($post_content); ?>
-            </h3>
+            <div style="text-align: right">
+                <button class="submit-comment-btn" style="display: none">Submit!</button>
+            </div>
         </div>
-    </div>
-    <div class="make-comment-section">
-        <div class="make-comment-textarea-wrapper">
-            <textarea class="make-comment-textarea" placeholder="Write a new comment..."></textarea>
-        </div>
-        <div style="text-align: right">
-            <button class="submit-comment-btn" style="display: none">Submit!</button>
-        </div>
-    </div>
-    <div class="post-comments-comments" style="display: none;"><!-- Comments will be injected here --></div>
+        <div class="post-comments-comments" style="display: none;"><!-- Comments will be injected here --></div>
     <?php
     }

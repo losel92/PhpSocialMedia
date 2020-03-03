@@ -571,6 +571,8 @@ button {
   border: 2px solid #3d3d3d;
   padding: 0px 15px;
   border-radius: 10px;
+
+  text-align: left;
 }
 
 /* The post headline */
@@ -585,6 +587,7 @@ button {
 .post-top {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* The picture on the top left of the post */
@@ -613,7 +616,7 @@ button {
   font-size: 20px;
 
   padding: 8px 5px;
-  margin-left: 2px;
+  margin: 5px 2px;
 
   background-color: #aaa;
   border: 2px solid #3d3d3d;
@@ -629,8 +632,7 @@ button {
 .post-comments {
   height: 40px;
   width: 40px;
-  position: absolute;
-  right: 70px;
+  margin-right: 4px;
 
   filter: opacity(0.7);
   background: url(../images/comment.png);
@@ -645,8 +647,6 @@ button {
 .post-settings {
   height: 40px;
   width: 40px;
-  position: absolute;
-  right: 22px;
 
   filter: opacity(0.7);
   background: url(../images/settings.png);
@@ -666,12 +666,13 @@ button {
 
 /* The contents on the bottom right of the post */
 .post-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
-  margin: 5px;
+  margin: 4px 0px;
   text-align: right;
   display: flex;
-  position: absolute;
-  right: 17px;
   font-family: "calibri";
   font-weight: bold;
   font-size: 20px;
@@ -684,10 +685,6 @@ button {
   font-family: "calibri";
   font-weight: bold;
   margin: 0px 5px;
-}
-.post-comments-count {
-  position: absolute;
-  right: 115px;
 }
 
 .post-upvote,

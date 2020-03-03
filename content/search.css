@@ -52,10 +52,16 @@ main {
   height: calc(100% - 8px);
 }
 
-.btn:hover,
+.custom-btn:hover,
 .btn-selected {
   color: red !important;
   background-color: #fff !important;
   border-color: #000 !important;
   cursor: pointer;
+}
+
+.search-result-posts {
+  margin: auto;
+  width: 70%;
+  min-width: 500px;
 }
