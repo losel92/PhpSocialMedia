@@ -80,6 +80,9 @@ $(document).ready(() => {
     var postHead = $(".post-creator-head").val()
     var postContent = $(".post-creator-content").val()
 
+    console.log(postHead)
+    console.log(postContent)
+
     //Passes the information to the php file
     $("#post-creator-load").load("posts/createPost.inc.php", {
       postHead: postHead,

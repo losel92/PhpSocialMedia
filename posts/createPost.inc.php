@@ -4,6 +4,8 @@
         //Opens a connection to the database and starts the session
         require '../includes/dbconnect.inc.php';
 
+        require 'userPosts.php';
+
         $conn = OpenCon();
         session_start();
 
@@ -20,11 +22,11 @@
         //Error handlers for empty post_head and post_content
         if($postHead == ""){
             $error = "emptyHead";
-            $postId = '';
+            $postId = 1;
         }
         else if($postContent == ""){
             $error = "emptyContent";
-            $postId = '';
+            $postId = 1;
         }
         else{
             //inserts the data into the database
@@ -32,7 +34,7 @@
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
                 $error = 'sqlError';
-                $postId ='';
+                $postId = 1;
             }
             else{
                 mysqli_stmt_bind_param($stmt, "isissi", $userId, $username, $timestamp, $postHead, $postContent, $edit_timestamp);
@@ -46,11 +48,10 @@
                     $postId = $row[0];
 
                     $error = 'noError';
-                    require 'userPosts.php';
                 }
                 else{
                     $error = 'sqlError';
-                    $postId = '';
+                    $postId = 1;
                 }
             }
         }
@@ -83,13 +84,13 @@
         $('.post-creator-content').css('border', '2px solid red');
     }
     //If there were no errors
-    else{
+    else if (errorCode == "noError") {
         //Resets the input fields
         $('.post-creator-head, .post-creator-content').css('border', '2px solid #3d3d3d');
         $('.post-creator-head, .post-creator-content').val('');
 
-        //Shows the post                                                          $post_id, $post_un, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted
-        $(".profile-post-creator-wrapper").after(`<?php echo getSinglePost($postId, $_SESSION["username"], date('d/m/Y',$timestamp), 0, 0, htmlspecialchars(addslashes($postHead)), htmlspecialchars($postContent), date('d/m/Y', $timestamp), false, false); ?>`)
+        //Shows the post
+        $(".profile-post-creator-wrapper").after(`<?php echo addslashes(getSinglePost($postId, $_SESSION["username"], $_SESSION['croppedPic'], date('d/m/Y',$timestamp), 0, 0, htmlspecialchars(addslashes($postHead)), htmlspecialchars(addslashes($postContent)), date('d/m/Y', $timestamp), false, false)); ?>`)
         $('#post<?php echo $postId ?>').hide().delay(200).fadeIn(500);
     }
     

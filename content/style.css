@@ -581,6 +581,7 @@ button {
 
 /* The non-headline text in the post */
 .post-text {
+  overflow: hidden;
 }
 
 /* The contents on the top left of the post */
