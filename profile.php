@@ -50,6 +50,7 @@ if (isset($_GET['user']) && isset($_SESSION['userId']) && is_numeric($_GET['user
 					</div>
 
 					<div class="profile-posts-div">
+						<div style="margin-top: 20px"></div>
 						<?php 
 							require 'posts/userPosts.php';
 

@@ -98,10 +98,10 @@ if (isset($_POST['action'])) {
                         ?>
 
                         <div class="single-user-profile-short">
-                            <a href="#"><div class="user-profile-short-pic" style="background-image: url(<?php echo $row['cropped_picture']; ?>)"></div></a>
+                            <a href="<?php echo "profile.php?user=".$row['user_id'] ?>"><div class="user-profile-short-pic" style="background-image: url(<?php echo $row['cropped_picture']; ?>)"></div></a>
                             <div class="user-profile-short-info">
                                 <div class="user-profile-info-top">
-                                    <a href="#"><span class="user-profile-info-un custom-btn"><?php echo $row['username']; ?></span></a>
+                                    <span class="user-profile-info-un custom-btn"><a href="<?php echo "profile.php?user=".$row['user_id'] ?>"><?php echo $row['username']; ?></a></span>
                                     <span class="user-profile-info-age"><?php echo $row['age']; ?></span>
                                     <span class="user-profile-info-gender"><?php echo $gender; ?></span>
                                     <button class="user-profile-follow-btn custom-btn"></button>
