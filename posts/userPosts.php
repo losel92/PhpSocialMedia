@@ -73,7 +73,7 @@
 
     function getAllPostsForSingleUser($uid) {
         //Opens a connection to the database
-        require 'includes/dbconnect.inc.php';
+        require_once 'includes/dbconnect.inc.php';
         $conn = OpenCon();
 
         $sql = "SELECT * FROM user_posts WHERE user_id=$uid ORDER BY post_timestamp DESC";
@@ -126,7 +126,12 @@
             }
             //If the user hasn't posted anything yet
             else{
-                echo "Your posts will appear here!";
+                if ($_SESSION['userId'] == $uid) {
+                    echo "Your posts will appear here!";
+                }
+                else {
+                    echo "This user doesn't have any posts yet";
+                }
             }
         }
         //There was an error
