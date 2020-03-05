@@ -74,3 +74,15 @@ CREATE TABLE comments_likes (
     FOREIGN KEY (comment_id) REFERENCES posts_comments(comment_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 )
+
+--
+-- Table structure for table `followers`
+--
+
+CREATE TABLE followers (
+  follower_id int(11) NOT NULL,
+  following_id int(11) NOT NULL,
+  PRIMARY KEY (follower_id, following_id),
+  FOREIGN KEY (follower_id) REFERENCES users(user_id),
+  FOREIGN KEY (following_id) REFERENCES users(user_id)
+)
