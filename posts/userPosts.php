@@ -1,7 +1,7 @@
 <!-- This fuction takes all the post info and returns an HTML object -->
 
 <?php
-    function getSinglePost($post_id, $post_un, $post_pic, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
+    function getSinglePost($user_id, $post_id, $post_un, $post_pic, $post_date, $post_likes, $comment_count, $post_title, $post_content, $edit_date, $upvoted, $downvoted){
 ?>
     <div class="userPost postid-<?php echo $post_id; ?>" id="post<?php echo $post_id; ?>" postId="<?php echo $post_id; ?>">
 
@@ -48,17 +48,17 @@
         </div>
 
         <!-- Actual post -->
-        <a class="post-top">
+        <div class="post-top">
             <div style="display: flex;">
                 <div class="post-picture" style="background-image: url(<?php echo $post_pic; ?>);"></div>
-                <span class="post-un"><?php echo $post_un; ?></span>
+                <a href="<?php echo "profile.php?user=".$user_id ?>" class="post-un"><span><?php echo $post_un; ?></span></a>
             </div>
             <div style="display: flex; align-items: center;">
                 <span class="post-comments-count"><?php echo $comment_count; ?></span>
                 <div class="post-comments" onclick="OpenModal('#post<?php echo $post_id; ?>-comment-form')"></div>
                 <div class="post-settings" onclick="OpenModal('#post<?php echo $post_id; ?>-settings-form-popup-contents')"></div>
             </div>
-        </a> 
+        </div> 
         <div class="post-contents">
             <h2 class="post-headline"><?php echo htmlspecialchars($post_title); ?></h2>
             <h3 class="post-text">
@@ -129,7 +129,7 @@
                         if ($usersRes->num_rows) {
                             while ($userRow = $usersRes->fetch_assoc()) {
                                 //Get each post individually
-                                getSinglePost($row['post_id'] ,$userRow['username'], $userRow['cropped_picture'], date('d/m/Y',$row['post_timestamp']), $likes, $comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
+                                getSinglePost($row['user_id'], $row['post_id'] ,$userRow['username'], $userRow['cropped_picture'], date('d/m/Y',$row['post_timestamp']), $likes, $comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
                             }
                         }
                     }

@@ -67,7 +67,7 @@ if (isset($_POST['action'])) {
                         if ($res4 =  $conn->query("SELECT username, cropped_picture FROM users WHERE user_id = {$row['user_id']}")) {
                             if ($res4->num_rows) {
                                 while ($row4 = $res4->fetch_assoc()) {
-                                    getSinglePost($row['post_id'], $row4['username'], $row4['cropped_picture'], date('d/m/Y',$row['post_timestamp']), $post_likes, $post_comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
+                                    getSinglePost($row['user_id'], $row['post_id'], $row4['username'], $row4['cropped_picture'], date('d/m/Y',$row['post_timestamp']), $post_likes, $post_comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
                                 }
                             }
                         }

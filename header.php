@@ -39,7 +39,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 			<ul class="header-ul">
 				<li id="header-profile"><a href="index.php">Profile</a></li>
-				<li id="header-feed"><a href="">Feed</a></li>
+				<li id="header-feed"><a href="feed.php">Feed</a></li>
 				<li id="header-search"><a href="loggedin.searchResults.php">Search</a></li>
 			</ul>
 
