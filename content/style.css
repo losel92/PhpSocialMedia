@@ -931,3 +931,32 @@ footer {
   background: #fff;
   text-align: center;
 }
+
+#user-follow-logo,
+#user-following-logo {
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+
+  position: absolute;
+  left: 257px;
+  margin-top: -55px;
+  cursor: pointer;
+  display: none;
+}
+
+#user-follow-logo {
+  background-image: url(https://cdn3.iconfinder.com/data/icons/basic-interface/100/add_user-512.png);
+}
+
+#user-following-logo {
+  background-image: url(https://cdn.onlinewebfonts.com/svg/img_529027.png);
+}
+
+.profile-column:hover #user-follow-logo {
+  display: block;
+}
+
+.profile-column:hover #user-following-logo {
+  display: block;
+}

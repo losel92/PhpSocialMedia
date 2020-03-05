@@ -188,4 +188,42 @@ $(document).ready(function() {
       }
     }
   })
+
+  //Follows the user
+  $(document).on("click", "#user-follow-logo", e => {
+    $.ajax({
+      type: "POST",
+      url: "./includes/profile.inc.php",
+      data: {
+        action: "followUser",
+        userId: $("#profile-page-wrapper").attr("userid")
+      },
+      success: res => {
+        console.log(res)
+        if (res == "Success") {
+          $("#user-follow-logo").attr("id", "user-following-logo")
+        }
+      },
+      error: err => {}
+    })
+  })
+
+  //Unfollows the user
+  $(document).on("click", "#user-following-logo", e => {
+    $.ajax({
+      type: "POST",
+      url: "./includes/profile.inc.php",
+      data: {
+        action: "unfollowUser",
+        userId: $("#profile-page-wrapper").attr("userid")
+      },
+      success: res => {
+        console.log(res)
+        if (res == "Success") {
+          $("#user-following-logo").attr("id", "user-follow-logo")
+        }
+      },
+      error: err => {}
+    })
+  })
 })
