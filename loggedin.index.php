@@ -86,8 +86,8 @@
 			<div class="post-creator-top"><span class="post-creator-title">Write a new post!</span></div>
 			<div class="profile-post-creator-content">
 				<form method="POST" action="./posts/createPost.inc.php">
-					<input type="text" class="post-creator-head" placeholder="Give your post a title...">
-					<textarea rows="5" class="post-creator-content" placeholder="Write your post here..."></textarea>
+					<input type="text" class="post-creator-head" placeholder="Give your post a title..." maxlength="50">
+					<textarea rows="5" class="post-creator-content" placeholder="Write your post here..." maxlength="300"></textarea>
 			</div>
 					<div class="post-creator-bottom"><button type="submit" class="post-creator-btn">Post!</button></div>
 					<p id="post-creator-load" style="margin: 0;"></p>
