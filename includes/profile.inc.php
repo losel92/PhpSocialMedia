@@ -22,13 +22,6 @@ if (isset($_POST['action'])) {
 
 }
 
-
-function getFollowerStatus ($user1, $user2) {
-
-}
-
-
-
 function followUser ($userId) {
     //Connection to db
     include_once("dbconnect.inc.php");
