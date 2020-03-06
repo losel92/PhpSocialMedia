@@ -88,9 +88,15 @@ require_once "header.php";
                             getSinglePost($row['user_id'], $row['post_id'], $row4['username'], $row4['cropped_picture'], date('d/m/Y',$row['post_timestamp']), $post_likes, $post_comments, $row['head'], $row['content'], $row['edit_timestamp'], $userUp, $userDown);
                         }
                     }
+                    else {
+                        ?> <span class="no-followers-txt">None of your followers have posted anything yet!</span> <?php
+                    }
                 }
 
             }
+        }
+        else {
+            ?> <span class="no-followers-txt">You are not following anyone yet!</span> <?php
         }
     }
 

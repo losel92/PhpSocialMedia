@@ -24,7 +24,9 @@
             </div>
         </div>
 
-        <!-- Edit post popup form -->
+    
+    <?php if ($user_id == $_SESSION['userId']) { ?>
+
         <div class="form-wrapper popup-form-wrapper">
             <div class="form-contents popup-form-contents post-edit-form-popup-contents" id="post<?php echo $post_id; ?>-edit-form-popup-contents">
                 <span class="closeX" id="post-edit-x" onclick="CloseModal('.form-contents')">&times;</span>
@@ -36,6 +38,23 @@
                 </div>
             </div>
         </div>
+    
+    <?php } //else { ?> 
+    <!-- 
+        
+        <div class="form-wrapper popup-form-wrapper">
+            <div class="form-contents popup-form-contents post-settings-form-popup-contents" id="post<?php // echo $post_id; ?>-settings-form-popup-contents">
+                <span class="closeX" id="post-edit-x" onclick="CloseModal('.form-contents')">&times;</span>
+                <div id="post-edit-form">
+                    <input type="text" id="post-edit-headline">
+                    <textarea type="text" id="post-edit-contents"></textarea>
+                    <input type="text" value="<?php // echo $post_id; ?>" readonly style="display: none;"> 
+                    <button type="submit" id="post-edit-submit" class="post-edit-submit" onclick="editPost();">Save</button>
+                </div>
+            </div>
+        </div>
+
+    <?php // } ?> -->
 
         <!-- Delete post popup form -->
         <div class="form-wrapper popup-form-wrapper">
@@ -56,7 +75,7 @@
             <div style="display: flex; align-items: center;">
                 <span class="post-comments-count"><?php echo $comment_count; ?></span>
                 <div class="post-comments" onclick="OpenModal('#post<?php echo $post_id; ?>-comment-form')"></div>
-                <div class="post-settings" onclick="OpenModal('#post<?php echo $post_id; ?>-settings-form-popup-contents')"></div>
+    <?php if ($user_id == $_SESSION['userId']) { ?><div class="post-settings" onclick="OpenModal('#post<?php echo $post_id; ?>-settings-form-popup-contents')"></div><?php } ?>
             </div>
         </div> 
         <div class="post-contents">
@@ -139,7 +158,7 @@
             //If the user hasn't posted anything yet
             else{
                 if ($_SESSION['userId'] == $uid) {
-                    echo "Your posts will appear here!";
+                    ?><span class="no-posts-txt">Your posts will appear here!</span> <?php
                 }
                 else {
                     echo "This user doesn't have any posts yet";

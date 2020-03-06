@@ -141,3 +141,13 @@ main {
 .user-profile-follow-btn:hover {
   background-image: url(../images/plus-red.png);
 }
+
+.no-followers-txt {
+  font-size: 30px;
+  background-color: #ccc;
+  padding: 5px;
+  border: 2px solid #3d3d3d;
+  border-radius: 5px;
+  font-weight: bold;
+  font: "calibri";
+}
