@@ -91,37 +91,40 @@ $(document).ready(function() {
 
     var files = $("#imgfile")[0].files[0]
 
-    fd.append("file", files)
+    //Will only execute if the user has chosen a file
+    if (files) {
+      fd.append("file", files)
 
-    $.ajax({
-      //Ajax request
-      url: "imgUpload.php",
-      type: "post",
-      data: fd,
-      contentType: false,
-      processData: false,
-      success: function(response) {
-        if (response != 0) {
-          //If the upload was successful, it will
-          //assign the src of the new img to the DOM element and properly downsize it
-          //Also, makes a cool animation ;D
-          jcrop_api.destroy()
-          $("#img-crop-btn").fadeOut()
-          $(".img-preview").slideUp(1000)
+      $.ajax({
+        //Ajax request
+        url: "./imgUpload.php",
+        type: "post",
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          if (response != 0) {
+            //If the upload was successful, it will
+            //assign the src of the new img to the DOM element and properly downsize it
+            //Also, makes a cool animation ;D
+            jcrop_api.destroy()
+            $("#img-crop-btn").fadeOut()
+            $(".img-preview").slideUp(1000)
 
-          setTimeout(function() {
-            $("#img-crop-prev").remove()
-            $(".img-preview").append(
-              "<img src='" + response + "' id='img-crop-prev'>"
-            )
-            ApplyCrop("#img-crop-prev", 600)
-            $(".img-preview").css("display", "block")
-          }, 1500)
-        } else {
-          alert("File not uploaded")
+            setTimeout(function() {
+              $("#img-crop-prev").remove()
+              $(".img-preview").append(
+                "<img src='" + response + "' id='img-crop-prev'>"
+              )
+              ApplyCrop("#img-crop-prev", 600)
+              $(".img-preview").css("display", "block")
+            }, 1500)
+          } else {
+            alert("File not uploaded")
+          }
         }
-      }
-    })
+      })
+    }
   })
 
   //Makes the img "croppable"
@@ -175,7 +178,7 @@ $(document).ready(function() {
         //Calls the php file to upload the img
         $.ajax({
           type: "POST",
-          url: "../imgUpload.php",
+          url: "./imgUpload.php",
           data: { croppedPath: croppedImgPath },
           success: function() {
             console.log("Cropped img path: " + croppedImgPath)
@@ -184,5 +187,43 @@ $(document).ready(function() {
         })
       }
     }
+  })
+
+  //Follows the user
+  $(document).on("click", "#user-follow-logo", e => {
+    $.ajax({
+      type: "POST",
+      url: "./includes/profile.inc.php",
+      data: {
+        action: "followUser",
+        userId: $("#profile-page-wrapper").attr("userid")
+      },
+      success: res => {
+        console.log(res)
+        if (res == "Success") {
+          $("#user-follow-logo").attr("id", "user-following-logo")
+        }
+      },
+      error: err => {}
+    })
+  })
+
+  //Unfollows the user
+  $(document).on("click", "#user-following-logo", e => {
+    $.ajax({
+      type: "POST",
+      url: "./includes/profile.inc.php",
+      data: {
+        action: "unfollowUser",
+        userId: $("#profile-page-wrapper").attr("userid")
+      },
+      success: res => {
+        console.log(res)
+        if (res == "Success") {
+          $("#user-following-logo").attr("id", "user-follow-logo")
+        }
+      },
+      error: err => {}
+    })
   })
 })

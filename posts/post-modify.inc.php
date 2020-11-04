@@ -1,7 +1,7 @@
 <?php
 
 //Post Edit
-if(isset($_POST['postHead'])){
+if (isset($_POST['postHead'])) {
     
     $status = 1;
 
@@ -12,7 +12,7 @@ if(isset($_POST['postHead'])){
 
     $postHead = $_POST['postHead'];
     $postContents = $_POST['postContents'];
-    $postId = substr($_POST['postId'], 4);
+    $postId = $_POST['postId'];
     $userId = $_SESSION['userId'];
     $edit_time = time();
     
@@ -48,7 +48,7 @@ if(isset($_POST['postHead'])){
     echo $status;
 }
 //Post Delete
-else if(isset($_POST['theId'])){
+else if (isset($_POST['theId'])) {
 
     $status = 1;
 
@@ -57,7 +57,7 @@ else if(isset($_POST['theId'])){
     $conn = OpenCon();
     session_start();
 
-    $postId = substr($_POST['theId'], 4);
+    $postId = $_POST['theId'];
     $userId = $_SESSION['userId'];
 
     $sql = "SELECT * FROM user_posts WHERE post_id=? AND user_id=?";
@@ -91,7 +91,94 @@ else if(isset($_POST['theId'])){
     }
     echo $status;
 }
+else if (isset($_POST['action'])) {
+
+    $postId;
+    $action = $_POST['action'];
+
+    //Timestamp of the action
+    $edit_time = time();
+
+    //Checks if the postId was passed, if not returns an error
+    if (isset($_POST['postId'])) {
+        $postId = $_POST['postId'];
+    }
+    else {
+        echo false;
+    }
+
+    //Upvote / Downvote post
+    if ($action == "upvote" || $action == "downvote" ) {
+        $status = $action == "upvote" ? 1 : 0;
+
+        //Opens a connection to the database
+        require '../includes/dbconnect.inc.php';
+        $conn = OpenCon();
+        session_start();
+
+        //The id of the user trying to make the changes
+        $userId = $_SESSION['userId'];
+
+        if($result = $conn->query("SELECT * FROM posts_likes WHERE post_id=$postId AND user_id=$userId") or die($conn->error)) {
+             if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    if ($status != $row['status']) { //If the user is switching their previous entry (from upvoted to downvoted and vice versa)
+                        if ($res2 = $conn->query("UPDATE posts_likes SET status=$status WHERE post_id=$postId AND user_id=$userId")) {
+                            $returnObj = new \stdClass();
+                            $returnObj->StatusCode = 10;
+                            $returnObj->Content = "up/downvote changed in post $postId";
+                            $jsonRes = json_encode($returnObj);
+                            echo $jsonRes;
+                        }
+                    }
+                    else { //Remove the up/downvote
+                        if ($res2 = $conn->query("DELETE FROM posts_likes WHERE post_id=$postId AND user_id=$userId")) {
+                            $returnObj = new \stdClass();
+                            $returnObj->StatusCode = 10;
+                            $returnObj->Content = "up/downvote removed";
+                            $jsonRes = json_encode($returnObj);
+                            echo $jsonRes;
+                        }
+                        else { //SQL Error
+                            $returnObj = new \stdClass();
+                            $returnObj->StatusCode = 29;
+                            $returnObj->ErrorMsg = "SQL Error";
+                            $jsonRes = json_encode($returnObj);
+                            echo $jsonRes;
+                        }
+                    }
+                }
+            }
+            else { //No action taken before, add new entry to table
+                if ($result = $conn->query("INSERT INTO posts_likes (user_id, post_id, status) VALUES ($userId, $postId, $status)")) {
+                    $returnObj = new \stdClass();
+                    $returnObj->StatusCode = 10;
+                    $returnObj->Content = "up/downvote added to post $postId";
+                    $jsonRes = json_encode($returnObj);
+                    echo $jsonRes;
+                }
+                else { //SQL Error
+                    $returnObj = new \stdClass();
+                    $returnObj->StatusCode = 29;
+                    $returnObj->ErrorMsg = "SQL Error";
+                    $jsonRes = json_encode($returnObj);
+                    echo $jsonRes;
+                }
+            }
+        }
+        else { //SQL Error
+            $returnObj = new \stdClass();
+            $returnObj->StatusCode = 29;
+            $returnObj->ErrorMsg = "SQL Error";
+            $jsonRes = json_encode($returnObj);
+            echo $jsonRes;
+        }
+    }
+    else {
+        header("Location: ../index.php");
+    }
+}
 //If the user simply enters the url to this page they'll be redirected to index.php
-else{
+else {
     header("Location: ../index.php");
 }

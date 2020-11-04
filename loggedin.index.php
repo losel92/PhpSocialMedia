@@ -4,7 +4,7 @@
 		<form class="form-popup" id="select-pic-form" method="post" action="" enctype="multipart/form-data">
 		    <span class="closeX" id="pic-form-x" onclick="CloseModal('.form-contents')">&times;</span>
 		    <h1>Upload a new profile picture!</h1>
-		    <input type="file" name="imgfile" id="imgfile" />
+		    <input type="file" name="imgfile" id="imgfile" accept="image/x-png,image/gif,image/jpeg" />
 		    <label for="imgfile">Choose a file</label>
 			<input type="button" name="upload" value="UPLOAD" id="profile-pic-upload-btn" class="btn">
 		</form>
@@ -86,8 +86,8 @@
 			<div class="post-creator-top"><span class="post-creator-title">Write a new post!</span></div>
 			<div class="profile-post-creator-content">
 				<form method="POST" action="./posts/createPost.inc.php">
-					<input type="text" class="post-creator-head" placeholder="Give your post a title...">
-					<textarea rows="5" class="post-creator-content" placeholder="Write your post here..."></textarea>
+					<input type="text" class="post-creator-head" placeholder="Give your post a title..." maxlength="50">
+					<textarea rows="5" class="post-creator-content" placeholder="Write your post here..." maxlength="300"></textarea>
 			</div>
 					<div class="post-creator-bottom"><button type="submit" class="post-creator-btn">Post!</button></div>
 					<p id="post-creator-load" style="margin: 0;"></p>
@@ -95,13 +95,15 @@
 		</div>
 
 		<?php 
-			//Opens a connection to the database
-			//require 'includes/dbconnect.inc.php';
-			//$conn = OpenCon();
-
 			require './posts/userPosts.php';
 
-			?> <script type="text/javascript" src="./scripts/posts.js"></script> <?php //Includes the js needed for handling posts
+			?> 
+				<!-- Includes the js needed for handling posts -->
+				<script type="text/javascript" src="./scripts/posts.js"></script> 
+		
+				<!-- Js for comments -->
+				<script type="text/javascript" src="./scripts/comments.js"></script> 
+			<?php
 			getAllPostsForSingleUser($_SESSION['userId']);
 		?>
 	</div>
